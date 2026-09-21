@@ -9,14 +9,18 @@ import {
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Toaster as Sonner, type ToasterProps } from "sonner"
+import { useI18n } from "@/components/wiki-locale"
 
 const Toaster = ({ ...props }: ToasterProps) => {
+  const { t } = useI18n()
   const { theme = "system" } = useTheme()
 
   return (
     <Sonner
       theme={theme as ToasterProps["theme"]}
       className="toaster group"
+      containerAriaLabel={t("Уведомления")}
+      toastOptions={{ closeButtonAriaLabel: t("Закрыть") }}
       icons={{
         success: <CircleCheckIcon className="size-4" />,
         info: <InfoIcon className="size-4" />,

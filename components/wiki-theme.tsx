@@ -1,5 +1,6 @@
 "use client";
 
+import { useI18n } from "@/components/wiki-locale";
 import { useSyncExternalStore } from "react";
 import { ThemeProvider, useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
@@ -21,6 +22,7 @@ export function WikiThemeProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function ThemeToggle() {
+  const { t } = useI18n();
   const { resolvedTheme, setTheme } = useTheme();
   // The server cannot read the visitor's saved or system theme.
   const mounted = useSyncExternalStore(
@@ -34,9 +36,9 @@ export function ThemeToggle() {
     <button
       type="button"
       className="theme-toggle"
-      aria-label="Тёмная тема"
+      aria-label={t("Тёмная тема")}
       aria-pressed={isDark}
-      title={isDark ? "Включить светлую тему" : "Включить тёмную тему"}
+      title={isDark ? t("Включить светлую тему") : t("Включить тёмную тему")}
       disabled={!mounted}
       onClick={() => setTheme(isDark ? "light" : "dark")}
     >

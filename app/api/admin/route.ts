@@ -44,7 +44,7 @@ export async function GET(request: Request) {
       { headers: noStore },
     );
   } catch (e) {
-    return apiError(e);
+    return apiError(e, request);
   }
 }
 export async function POST(request: Request) {
@@ -75,6 +75,6 @@ export async function POST(request: Request) {
       throw new HttpError(409, "Администратор уже назначен.");
     return Response.json({ ok: true }, { headers: noStore });
   } catch (e) {
-    return apiError(e);
+    return apiError(e, request);
   }
 }

@@ -1,3 +1,5 @@
+import { getServerI18n } from "@/lib/i18n-server";
+import { dateLocale } from "@/lib/i18n";
 import { notFound } from "next/navigation";
 import { database, getAdmin } from "@/lib/server";
 import { type Resource, kinds, moduleLabel } from "@/lib/catalog";
@@ -10,6 +12,7 @@ export default async function Page({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const { t, locale } = await getServerI18n();
   const { id } = await params;
   const r = await database()
     .prepare(
@@ -22,33 +25,38 @@ export default async function Page({
     <>
       <Breadcrumbs
         items={[
-          { label: "Библиотека", href: "/resources" },
-          { label: r.course_title || "Курс", href: `/courses/${r.course_id}` },
+          { label: t("Библиотека"), href: "/resources" },
+          {
+            label: r.course_title || t("Курс"),
+            href: `/courses/${r.course_id}`,
+          },
           { label: r.title },
         ]}
       />
       <div className="page-heading">
         <span className="page-eyebrow">
-          {kinds[r.kind]} ·{" "}
+          {t(kinds[r.kind])} ·{" "}
           {r.format === "file"
             ? r.filename.split(".").pop()?.toUpperCase()
             : r.format === "markdown"
               ? "Markdown"
-              : "Внешняя ссылка"}
+              : t("Внешняя ссылка")}
         </span>
         <h1>{r.title}</h1>
         <p>{r.description}</p>
       </div>
       {r.status !== "published" && (
-        <p className="notice">Предпросмотр: материал не опубликован.</p>
+        <p className="notice">{t("Предпросмотр: материал не опубликован.")}</p>
       )}
       <div className="resource-meta">
-        <span>{r.topic || "Без темы"}</span>
-        {r.modules && <span>{moduleLabel(r.modules)}</span>}
-        <span>Версия {r.version}</span>
+        <span>{r.topic || t("Без темы")}</span>
+        {r.modules && <span>{moduleLabel(r.modules, locale)}</span>}
         <span>
-          Обновлено{" "}
-          {new Date(r.updated_at).toLocaleDateString("ru-RU", {
+          {t("Версия")} {r.version}
+        </span>
+        <span>
+          {t("Обновлено")}{" "}
+          {new Date(r.updated_at).toLocaleDateString(dateLocale[locale], {
             timeZone: "Europe/Moscow",
           })}
         </span>
@@ -66,26 +74,31 @@ export default async function Page({
             target="_blank"
             rel="noopener noreferrer"
           >
-            Открыть источник <ArrowUpRight size={18} />
+            {t("Открыть источник")} <ArrowUpRight size={18} />
           </a>
         </div>
       ) : (
         <>
           <div className="download-bar">
             <span>
-              {r.filename} · {(r.size / 1024 / 1024).toFixed(2)} МБ
+              {r.filename} ·{" "}
+              {(r.size / 1024 / 1024).toLocaleString(dateLocale[locale], {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}{" "}
+              {t("МБ")}
             </span>
             <a
               className="button primary"
               href={`/api/files/${r.id}?download=1`}
             >
-              <Download size={17} /> Скачать файл
+              <Download size={17} /> {t("Скачать файл")}
             </a>
           </div>
           {r.mime === "application/pdf" ? (
             <iframe
               className="pdf-preview"
-              title={`Предпросмотр PDF: ${r.title}`}
+              title={t`Предпросмотр PDF: ${r.title}`}
               src={`/api/files/${r.id}`}
               sandbox="allow-same-origin allow-scripts"
             />
@@ -96,15 +109,16 @@ export default async function Page({
             </div>
           ) : (
             <p className="notice">
-              Этот формат открывается в соответствующем приложении после
-              скачивания.
+              {t(
+                "Этот формат открывается в соответствующем приложении после скачивания.",
+              )}
             </p>
           )}
         </>
       )}
       <div className="attribution">
-        <strong>Автор / источник</strong>
-        <p>{r.attribution || "Не указан"}</p>
+        <strong>{t("Автор / источник")}</strong>
+        <p>{r.attribution || t("Не указан")}</p>
       </div>
     </>
   );

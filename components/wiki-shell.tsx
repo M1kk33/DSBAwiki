@@ -1,4 +1,5 @@
 "use client";
+import { useI18n, LanguageToggle } from "@/components/wiki-locale";
 import { usePathname } from "next/navigation";
 import {
   BookOpen,
@@ -34,11 +35,12 @@ const links = [
   { href: "/about", text: "О проекте", icon: Info },
 ];
 export function WikiShell({ children }: { children: React.ReactNode }) {
+  const { t } = useI18n();
   const pathname = usePathname();
   return (
     <SidebarProvider>
       <a href="#main" className="skip-link">
-        К содержимому
+        {t("К содержимому")}
       </a>
       <Sidebar className="wiki-sidebar">
         <SidebarHeader>
@@ -46,7 +48,7 @@ export function WikiShell({ children }: { children: React.ReactNode }) {
             <img src="/favicon.svg" alt="" width="44" height="44" />
             <span>
               DSBA<span className="brand-wiki"> wiki</span>
-              <small>ЗНАНИЯ РАСТУТ ВМЕСТЕ</small>
+              <small>{t("ЗНАНИЯ РАСТУТ ВМЕСТЕ")}</small>
             </span>
           </a>
           <div className="program-label">
@@ -56,7 +58,7 @@ export function WikiShell({ children }: { children: React.ReactNode }) {
         </SidebarHeader>
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel>ПРОСТРАНСТВО ЗНАНИЙ</SidebarGroupLabel>
+            <SidebarGroupLabel>{t("ПРОСТРАНСТВО ЗНАНИЙ")}</SidebarGroupLabel>
             <SidebarMenu>
               {links.map(({ href, text, icon: Icon }) => (
                 <SidebarMenuItem key={href}>
@@ -69,7 +71,7 @@ export function WikiShell({ children }: { children: React.ReactNode }) {
                   >
                     <a href={href}>
                       <Icon />
-                      <span>{text}</span>
+                      <span>{t(text)}</span>
                     </a>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -77,14 +79,14 @@ export function WikiShell({ children }: { children: React.ReactNode }) {
             </SidebarMenu>
           </SidebarGroup>
           <SidebarGroup>
-            <SidebarGroupLabel>ПО ГОДАМ ОБУЧЕНИЯ</SidebarGroupLabel>
+            <SidebarGroupLabel>{t("ПО ГОДАМ ОБУЧЕНИЯ")}</SidebarGroupLabel>
             <SidebarMenu>
               {[1, 2, 3, 4].map((year) => (
                 <SidebarMenuItem key={year}>
                   <SidebarMenuButton asChild>
                     <a href={`/courses?year=${year}`}>
                       <span className="year-number">0{year}</span>
-                      <span>{year} курс</span>
+                      <span>{t`${year} курс`}</span>
                       <ChevronRight className="ml-auto" />
                     </a>
                   </SidebarMenuButton>
@@ -95,36 +97,37 @@ export function WikiShell({ children }: { children: React.ReactNode }) {
           <div className="sidebar-note">
             <Sprout size={22} />
             <strong>
-              Маленький вклад.
+              {t("Маленький вклад.")}
               <br />
-              Большая польза.
+              {t("Большая польза.")}
             </strong>
-            <p>Хорошие конспекты заслуживают быть найденными.</p>
+            <p>{t("Хорошие конспекты заслуживают быть найденными.")}</p>
             <a href="/about#contribute">
-              Как помочь проекту <ArrowUpRight size={15} />
+              {t("Как помочь проекту")} <ArrowUpRight size={15} />
             </a>
           </div>
         </SidebarContent>
         <SidebarFooter>
           <a className="admin-link" href="/admin">
-            <Shield size={16} /> Управление материалами
+            <Shield size={16} /> {t("Управление материалами")}
           </a>
           <div className="sidebar-bottom">
-            Независимый студенческий проект
+            {t("Независимый студенческий проект")}
             <br />
-            ФКН · НИУ ВШЭ
+            {t("ФКН · НИУ ВШЭ")}
           </div>
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
         <header className="topbar">
           <div className="topbar-context">
-            <SidebarTrigger aria-label="Открыть навигацию" />
-            <span>Студенческая база знаний</span>
+            <SidebarTrigger aria-label={t("Открыть навигацию")} />
+            <span>{t("Студенческая база знаний")}</span>
           </div>
           <a href="/resources" className="top-search">
-            <Search size={16} /> Поиск по wiki
+            <Search size={16} /> {t("Поиск по wiki")}
           </a>
+          <LanguageToggle />
           <ThemeToggle />
           <span className="academic-pill">2026 / 2027</span>
         </header>
@@ -133,11 +136,11 @@ export function WikiShell({ children }: { children: React.ReactNode }) {
         </main>
         <footer className="site-footer">
           <span>
-            DSBA wiki <span className="footer-dot">·</span> Создаём знания
-            вместе
+            DSBA wiki <span className="footer-dot">·</span>{" "}
+            {t("Создаём знания вместе")}
           </span>
           <a href="/about">
-            Открыто для любопытства <Sprout size={15} />
+            {t("Открыто для любопытства")} <Sprout size={15} />
           </a>
         </footer>
       </SidebarInset>

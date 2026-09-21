@@ -1,5 +1,6 @@
 "use client";
-import { readResponse } from "@/lib/client";
+import { useI18n, LanguageToggle } from "@/components/wiki-locale";
+import { readResponse, errorMessage } from "@/lib/client";
 import { useEffect, useRef, useState } from "react";
 import {
   Plus,
@@ -88,6 +89,7 @@ const statuses: Record<string, string> = {
   archived: "Архив",
 };
 export function AdminPanel() {
+  const { t, errorText } = useI18n();
   const [data, setData] = useState<AdminData | null>(null),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false),
@@ -115,9 +117,10 @@ export function AdminPanel() {
       { signal: controller.signal },
     );
     const next = (await readResponse(response)) as AdminData & {
+      errorKey?: string;
       error?: string;
     };
-    if (!response.ok) throw new Error(next.error);
+    if (!response.ok) throw new Error(next.errorKey || next.error);
     setData(next);
     if (!editorOpen && !courseOpen) setError("");
   }
@@ -125,7 +128,7 @@ export function AdminPanel() {
     const timer = setTimeout(
       () =>
         load().catch((e) => {
-          if (e.name !== "AbortError") setError(e.message);
+          if (e.name !== "AbortError") setError(errorMessage(e));
         }),
       180,
     );
@@ -147,14 +150,15 @@ export function AdminPanel() {
       const result = (await readResponse(response)) as {
         id: string;
         version: number;
+        errorKey?: string;
         error?: string;
       };
-      if (!response.ok) throw new Error(result.error);
+      if (!response.ok) throw new Error(result.errorKey || result.error);
       setActivation("");
       await load();
-      toast.success("Доступ администратора активирован");
+      toast.success(t("Доступ администратора активирован"));
     } catch (e) {
-      setError((e as Error).message);
+      setError(errorMessage(e));
     } finally {
       setBusy(false);
     }
@@ -169,9 +173,10 @@ export function AdminPanel() {
         );
         const result = (await readResponse(response)) as {
           resource: Resource;
+          errorKey?: string;
           error?: string;
         };
-        if (!response.ok) throw new Error(result.error);
+        if (!response.ok) throw new Error(result.errorKey || result.error);
         if (requestId !== editorRequest.current) return;
         setDraft(result.resource);
       } else {
@@ -184,7 +189,7 @@ export function AdminPanel() {
       setFiles([]);
       setEditorOpen(true);
     } catch (e) {
-      setError((e as Error).message);
+      setError(errorMessage(e));
     }
   }
   async function saveResource(e: React.FormEvent) {
@@ -214,9 +219,10 @@ export function AdminPanel() {
         const result = (await readResponse(response)) as {
           id: string;
           version: number;
+          errorKey?: string;
           error?: string;
         };
-        if (!response.ok) throw new Error(result.error);
+        if (!response.ok) throw new Error(result.errorKey || result.error);
         saved++;
       }
       setEditorOpen(false);
@@ -224,21 +230,21 @@ export function AdminPanel() {
       setDraft(blankResource);
       await load().catch(() =>
         toast.info(
-          "Материал сохранён. Обновите страницу, чтобы перечитать список.",
+          t("Материал сохранён. Обновите страницу, чтобы перечитать список."),
         ),
       );
       toast.success(
-        saved > 1 ? `Загружено материалов: ${saved}` : "Материал сохранён",
+        saved > 1 ? t`Загружено материалов: ${saved}` : t("Материал сохранён"),
       );
     } catch (e) {
       if (saved) {
         setFiles(files.slice(saved));
         toast.info(
-          `Уже сохранено: ${saved}. Остальные файлы остались в форме.`,
+          t`Уже сохранено: ${saved}. Остальные файлы остались в форме.`,
         );
         await load().catch(() => {});
       }
-      setError((e as Error).message);
+      setError(errorMessage(e));
     } finally {
       setBusy(false);
     }
@@ -256,14 +262,17 @@ export function AdminPanel() {
       const result = (await readResponse(response)) as {
         id: string;
         version: number;
+        errorKey?: string;
         error?: string;
       };
-      if (!response.ok) throw new Error(result.error);
+      if (!response.ok) throw new Error(result.errorKey || result.error);
       setCourseOpen(false);
-      await load().catch(() => toast.info("Курс сохранён. Обновите список."));
-      toast.success("Курс сохранён");
+      await load().catch(() =>
+        toast.info(t("Курс сохранён. Обновите список.")),
+      );
+      toast.success(t("Курс сохранён"));
     } catch (e) {
-      setError((e as Error).message);
+      setError(errorMessage(e));
     } finally {
       setBusy(false);
     }
@@ -271,26 +280,26 @@ export function AdminPanel() {
   const courseOptions =
     data?.courses?.map((c) => ({
       value: c.id,
-      label: `${c.title} · ${c.study_year} курс · ${c.academic_year}`,
+      label: t`${c.title} · ${c.study_year} курс · ${c.academic_year}`,
     })) || [];
   return (
     <>
-      <Breadcrumbs items={[{ label: "Управление" }]} />
+      <Breadcrumbs items={[{ label: t("Управление") }]} />
       <div className="page-heading">
         <span className="page-eyebrow">
-          <Shield size={16} /> РЕДАКТОРСКАЯ
+          <Shield size={16} /> {t("РЕДАКТОРСКАЯ")}
         </span>
-        <h1>Знания в хороших руках.</h1>
-        <p>Курсы, учебные файлы и публикации.</p>
+        <h1>{t("Знания в хороших руках.")}</h1>
+        <p>{t("Курсы, учебные файлы и публикации.")}</p>
       </div>
       {error && !editorOpen && !courseOpen && (
         <div className="error-banner" role="alert">
-          {error}
+          {errorText(error)}
           <button
             className="button"
-            onClick={() => load().catch((e) => setError(e.message))}
+            onClick={() => load().catch((e) => setError(errorMessage(e)))}
           >
-            Повторить загрузку
+            {t("Повторить загрузку")}
           </button>
         </div>
       )}
@@ -299,37 +308,41 @@ export function AdminPanel() {
       ) : !data ? null : !data.user ? (
         <div className="prose-card auth-card">
           <Shield size={34} />
-          <h2>Вход для администратора</h2>
+          <h2>{t("Вход для администратора")}</h2>
           <p>
-            Просматривать опубликованные материалы можно без прав редактора. Для
-            управления войдите в аккаунт.
+            {t(
+              "Просматривать опубликованные материалы можно без прав редактора. Для управления войдите в аккаунт.",
+            )}
           </p>
           <a
             className="button primary"
             href="/signin-with-chatgpt?return_to=%2Fadmin"
             target="_top"
           >
-            Войти через ChatGPT <ArrowUpRight size={16} />
+            {t("Войти через ChatGPT")} <ArrowUpRight size={16} />
           </a>
         </div>
       ) : !data.admin ? (
         <div className="prose-card auth-card">
           <h2>
             {data.configured
-              ? "Нет доступа к управлению"
-              : "Первичная настройка"}
+              ? t("Нет доступа к управлению")
+              : t("Первичная настройка")}
           </h2>
-          <p>Вы вошли как {data.user.displayName}.</p>
+          <p>
+            {t("Вы вошли как")} {data.user.displayName}.
+          </p>
           {data.configured ? (
-            <p>Этот аккаунт не назначен администратором.</p>
+            <p>{t("Этот аккаунт не назначен администратором.")}</p>
           ) : (
             <form onSubmit={activate}>
               <p>
-                Введите одноразовый ключ из серверной конфигурации. Он закрепит
-                роль администратора за вашим аккаунтом.
+                {t(
+                  "Введите одноразовый ключ из серверной конфигурации. Он закрепит роль администратора за вашим аккаунтом.",
+                )}
               </p>
               <label className="field">
-                Ключ активации
+                {t("Ключ активации")}
                 <input
                   type="password"
                   autoComplete="off"
@@ -339,7 +352,7 @@ export function AdminPanel() {
                 />
               </label>
               <button className="button primary" disabled={busy}>
-                Активировать доступ
+                {t("Активировать доступ")}
               </button>
             </form>
           )}
@@ -348,7 +361,7 @@ export function AdminPanel() {
             href="/signout-with-chatgpt?return_to=%2Fadmin"
             target="_top"
           >
-            Выйти из аккаунта
+            {t("Выйти из аккаунта")}
           </a>
         </div>
       ) : (
@@ -359,21 +372,23 @@ export function AdminPanel() {
               {data.user.displayName}
             </span>
             <a href="/signout-with-chatgpt?return_to=%2Fadmin" target="_top">
-              <LogOut size={15} /> Выйти
+              <LogOut size={15} /> {t("Выйти")}
             </a>
           </div>
           <Tabs defaultValue="resources">
             <div className="admin-tabs-row">
               <TabsList>
                 <TabsTrigger value="resources">
-                  Материалы ({data.resourceTotal || 0})
+                  {t("Материалы (")}
+                  {data.resourceTotal || 0})
                 </TabsTrigger>
                 <TabsTrigger value="courses">
-                  Курсы ({data.courses?.length || 0})
+                  {t("Курсы (")}
+                  {data.courses?.length || 0})
                 </TabsTrigger>
               </TabsList>
               <button className="button primary" onClick={() => editResource()}>
-                <Plus size={17} /> Добавить материал
+                <Plus size={17} /> {t("Добавить материал")}
               </button>
             </div>
             <TabsContent value="resources">
@@ -381,8 +396,8 @@ export function AdminPanel() {
                 <label className="catalog-search">
                   <Search size={18} />
                   <input
-                    aria-label="Поиск в управлении"
-                    placeholder="Найти материал"
+                    aria-label={t("Поиск в управлении")}
+                    placeholder={t("Найти материал")}
                     value={query}
                     onChange={(e) => {
                       setQuery(e.target.value);
@@ -391,17 +406,17 @@ export function AdminPanel() {
                   />
                 </label>
                 <Picker
-                  label="Статус"
+                  label={t("Статус")}
                   value={status}
                   onChange={(v) => {
                     setStatus(v);
                     setPage(1);
                   }}
                   options={[
-                    { value: "", label: "Все статусы" },
+                    { value: "", label: t("Все статусы") },
                     ...Object.entries(statuses).map(([value, label]) => ({
                       value,
-                      label,
+                      label: t(label),
                     })),
                   ]}
                 />
@@ -418,20 +433,22 @@ export function AdminPanel() {
                       <span>
                         <strong>{r.title}</strong>
                         <small>
-                          {r.course_title} · {kinds[r.kind]}
+                          {r.course_title} · {t(kinds[r.kind])}
                         </small>
                       </span>
                       <span className={`status-badge status-${r.status}`}>
-                        {statuses[r.status]}
+                        {t(statuses[r.status])}
                       </span>
-                      <span>Изменить</span>
+                      <span>{t("Изменить")}</span>
                     </button>
                   ))}
                 </div>
               ) : (
                 <EmptyState
-                  title="Материалы не найдены"
-                  description="Выберите файл, напишите заметку в Markdown или добавьте полезную ссылку. Новые записи сохраняются как черновики."
+                  title={t("Материалы не найдены")}
+                  description={t(
+                    "Выберите файл, напишите заметку в Markdown или добавьте полезную ссылку. Новые записи сохраняются как черновики.",
+                  )}
                 />
               )}
               <PageControls
@@ -443,8 +460,9 @@ export function AdminPanel() {
             <TabsContent value="courses">
               <div className="section-heading">
                 <p className="filter-note">
-                  Названия и периоды можно дополнять по мере обновления
-                  программы.
+                  {t(
+                    "Названия и периоды можно дополнять по мере обновления программы.",
+                  )}
                 </p>
                 <button
                   className="button"
@@ -454,7 +472,7 @@ export function AdminPanel() {
                     setCourseOpen(true);
                   }}
                 >
-                  <Plus size={16} /> Новый курс
+                  <Plus size={16} /> {t("Новый курс")}
                 </button>
               </div>
               <div className="admin-resource-list">
@@ -472,10 +490,11 @@ export function AdminPanel() {
                     <span>
                       <strong>{c.title}</strong>
                       <small>
-                        {c.academic_year} · Модули {c.modules || "не указаны"}
+                        {c.academic_year} {t("· Модули")}{" "}
+                        {c.modules || t("не указаны")}
                       </small>
                     </span>
-                    <span>Изменить</span>
+                    <span>{t("Изменить")}</span>
                   </button>
                 ))}
               </div>
@@ -491,19 +510,26 @@ export function AdminPanel() {
       >
         <DialogContent className="editor-dialog">
           <DialogHeader>
-            <DialogTitle>
-              {draft.version ? "Редактирование материала" : "Новый материал"}
-            </DialogTitle>
+            <div className="flex items-center justify-between gap-3 pr-8">
+              <DialogTitle>
+                {draft.version
+                  ? t("Редактирование материала")
+                  : t("Новый материал")}
+              </DialogTitle>
+              <LanguageToggle />
+            </div>
             <DialogDescription>
-              Файл, ссылка или заметка — всё будет связано с выбранным курсом.
+              {t(
+                "Файл, ссылка или заметка — всё будет связано с выбранным курсом.",
+              )}
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={saveResource} className="editor-form">
             <div className="form-grid">
               <label className="field full">
-                Дисциплина
+                {t("Дисциплина")}
                 <Picker
-                  label="Дисциплина"
+                  label={t("Дисциплина")}
                   value={draft.course_id}
                   onChange={(v) => {
                     update("course_id", v);
@@ -513,9 +539,9 @@ export function AdminPanel() {
                 />
               </label>
               <label className="field">
-                Формат
+                {t("Формат")}
                 <Picker
-                  label="Формат"
+                  label={t("Формат")}
                   value={draft.format}
                   onChange={(v) => {
                     update("format", v);
@@ -524,21 +550,21 @@ export function AdminPanel() {
                     setFiles([]);
                   }}
                   options={[
-                    { value: "file", label: "Загрузить файл" },
-                    { value: "markdown", label: "Текст Markdown" },
-                    { value: "link", label: "Внешняя ссылка" },
+                    { value: "file", label: t("Загрузить файл") },
+                    { value: "markdown", label: t("Текст Markdown") },
+                    { value: "link", label: t("Внешняя ссылка") },
                   ]}
                 />
               </label>
               <label className="field">
-                Тип материала
+                {t("Тип материала")}
                 <Picker
-                  label="Тип материала"
+                  label={t("Тип материала")}
                   value={draft.kind}
                   onChange={(v) => update("kind", v)}
                   options={Object.entries(kinds).map(([value, label]) => ({
                     value,
-                    label,
+                    label: t(label),
                   }))}
                 />
               </label>
@@ -546,7 +572,9 @@ export function AdminPanel() {
                 <div className="upload-field full">
                   <Upload size={25} />
                   <label htmlFor="resource-file">
-                    {draft.filename ? "Заменить текущий файл" : "Выбрать файлы"}
+                    {draft.filename
+                      ? t("Заменить текущий файл")
+                      : t("Выбрать файлы")}
                   </label>
                   <input
                     id="resource-file"
@@ -562,28 +590,32 @@ export function AdminPanel() {
                     }}
                   />
                   <p>
-                    PDF, Office, Markdown, TXT, CSV, IPYNB · до 16 МБ на файл
+                    {t(
+                      "PDF, Office, Markdown, TXT, CSV, IPYNB · до 16 МБ на файл",
+                    )}
                   </p>
                   {draft.filename && (
                     <small>
-                      Текущий: {draft.filename}. При замене ссылка сохранится.
+                      {t("Текущий:")} {draft.filename}
+                      {t(". При замене ссылка сохранится.")}
                     </small>
                   )}
                   {files.length > 0 && (
                     <small>
-                      Выбрано: {files.map((f) => f.name).join(", ")}
+                      {t("Выбрано:")} {files.map((f) => f.name).join(", ")}
                     </small>
                   )}
                   {files.length > 1 && (
                     <p>
-                      Каждый файл станет отдельным материалом. Названия берутся
-                      из имён файлов, остальные поля общие.
+                      {t(
+                        "Каждый файл станет отдельным материалом. Названия берутся из имён файлов, остальные поля общие.",
+                      )}
                     </p>
                   )}
                 </div>
               )}
               <label className="field full">
-                Название
+                {t("Название")}
                 <input
                   required
                   maxLength={200}
@@ -592,24 +624,24 @@ export function AdminPanel() {
                 />
               </label>
               <label className="field">
-                Тема
+                {t("Тема")}
                 <input
                   maxLength={200}
-                  placeholder="Например: пределы и непрерывность"
+                  placeholder={t("Например: пределы и непрерывность")}
                   value={draft.topic}
                   onChange={(e) => update("topic", e.target.value)}
                 />
               </label>
               <label className="field">
-                Модули
+                {t("Модули")}
                 <input
-                  placeholder="1,2 — или оставьте пустым"
+                  placeholder={t("1,2 — или оставьте пустым")}
                   value={draft.modules}
                   onChange={(e) => update("modules", e.target.value)}
                 />
               </label>
               <label className="field full">
-                Описание
+                {t("Описание")}
                 <textarea
                   rows={3}
                   maxLength={5000}
@@ -619,7 +651,7 @@ export function AdminPanel() {
               </label>
               {draft.format === "link" && (
                 <label className="field full">
-                  Ссылка
+                  {t("Ссылка")}
                   <input
                     type="url"
                     required
@@ -633,18 +665,20 @@ export function AdminPanel() {
                 <div className="field full">
                   <Tabs defaultValue="write">
                     <TabsList>
-                      <TabsTrigger value="write">Текст</TabsTrigger>
-                      <TabsTrigger value="preview">Предпросмотр</TabsTrigger>
+                      <TabsTrigger value="write">{t("Текст")}</TabsTrigger>
+                      <TabsTrigger value="preview">
+                        {t("Предпросмотр")}
+                      </TabsTrigger>
                     </TabsList>
                     <TabsContent value="write">
                       <textarea
-                        aria-label="Текст Markdown"
+                        aria-label={t("Текст Markdown")}
                         className="markdown-editor"
                         rows={12}
                         maxLength={200000}
                         value={draft.body}
                         onChange={(e) => update("body", e.target.value)}
-                        placeholder="# Тема занятия&#10;&#10;Ваши заметки..."
+                        placeholder={t("# Тема занятия\n\nВаши заметки...")}
                       />
                     </TabsContent>
                     <TabsContent value="preview">
@@ -654,16 +688,19 @@ export function AdminPanel() {
                     </TabsContent>
                   </Tabs>
                   <small>
-                    Заголовки, списки, **жирный**, `код`, блоки кода и ссылки.
-                    HTML отображается текстом.
+                    {t(
+                      "Заголовки, списки, **жирный**, `код`, блоки кода и ссылки. HTML отображается текстом.",
+                    )}
                   </small>
                 </div>
               )}
               <label className="field full">
-                Автор / источник и основание для публикации
+                {t("Автор / источник и основание для публикации")}
                 <input
                   maxLength={1000}
-                  placeholder="Автор, ссылка и лицензия / разрешение / собственная работа"
+                  placeholder={t(
+                    "Автор, ссылка и лицензия / разрешение / собственная работа",
+                  )}
                   value={draft.attribution}
                   onChange={(e) => update("attribution", e.target.value)}
                 />
@@ -675,29 +712,29 @@ export function AdminPanel() {
                     update("rights_confirmed", v === true ? 1 : 0)
                   }
                 />{" "}
-                Я подтверждаю право размещать этот материал
+                {t("Я подтверждаю право размещать этот материал")}
               </label>
               <label className="field">
-                Статус
+                {t("Статус")}
                 <Picker
-                  label="Статус материала"
+                  label={t("Статус материала")}
                   value={draft.status}
                   onChange={(v) => update("status", v)}
                   options={Object.entries(statuses).map(([value, label]) => ({
                     value,
-                    label,
+                    label: t(label),
                   }))}
                 />
               </label>
               <div className="field status-explanation">
                 {draft.status === "published"
-                  ? "Материал будет виден всем посетителям."
-                  : "Материал доступен только администратору."}
+                  ? t("Материал будет виден всем посетителям.")
+                  : t("Материал доступен только администратору.")}
               </div>
             </div>
             {error && (
               <div className="error-banner" role="alert">
-                {error}
+                {errorText(error)}
               </div>
             )}
             <div className="form-actions">
@@ -708,7 +745,7 @@ export function AdminPanel() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Открыть страницу <ArrowUpRight size={15} />
+                  {t("Открыть страницу")} <ArrowUpRight size={15} />
                 </a>
               )}
               <button
@@ -717,11 +754,11 @@ export function AdminPanel() {
                 disabled={busy}
                 onClick={() => setEditorOpen(false)}
               >
-                Отмена
+                {t("Отмена")}
               </button>
               <button className="button primary" disabled={busy}>
                 <Save size={17} />
-                {busy ? "Сохраняем…" : "Сохранить"}
+                {busy ? t("Сохраняем…") : t("Сохранить")}
               </button>
             </div>
           </form>
@@ -735,17 +772,22 @@ export function AdminPanel() {
       >
         <DialogContent className="editor-dialog">
           <DialogHeader>
-            <DialogTitle>
-              {courseDraft.id ? "Редактирование курса" : "Новый курс"}
-            </DialogTitle>
+            <div className="flex items-center justify-between gap-3 pr-8">
+              <DialogTitle>
+                {courseDraft.id ? t("Редактирование курса") : t("Новый курс")}
+              </DialogTitle>
+              <LanguageToggle />
+            </div>
             <DialogDescription>
-              Добавляйте только подтверждённые сведения об учебной программе.
+              {t(
+                "Добавляйте только подтверждённые сведения об учебной программе.",
+              )}
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={saveCourse} className="editor-form">
             <div className="form-grid">
               <label className="field full">
-                Название
+                {t("Название")}
                 <input
                   required
                   maxLength={180}
@@ -756,21 +798,21 @@ export function AdminPanel() {
                 />
               </label>
               <label className="field">
-                Год обучения
+                {t("Год обучения")}
                 <Picker
-                  label="Год обучения"
+                  label={t("Год обучения")}
                   value={String(courseDraft.study_year)}
                   onChange={(v) =>
                     setCourseDraft({ ...courseDraft, study_year: +v })
                   }
                   options={[1, 2, 3, 4].map((y) => ({
                     value: String(y),
-                    label: `${y} курс`,
+                    label: t`${y} курс`,
                   }))}
                 />
               </label>
               <label className="field">
-                Учебный год
+                {t("Учебный год")}
                 <input
                   required
                   placeholder="2026/2027"
@@ -784,7 +826,7 @@ export function AdminPanel() {
                 />
               </label>
               <label className="field">
-                Модули
+                {t("Модули")}
                 <input
                   placeholder="1,2,3,4"
                   value={courseDraft.modules}
@@ -794,7 +836,7 @@ export function AdminPanel() {
                 />
               </label>
               <label className="field">
-                Группа / специализация
+                {t("Группа / специализация")}
                 <input
                   value={courseDraft.category}
                   onChange={(e) =>
@@ -803,7 +845,7 @@ export function AdminPanel() {
                 />
               </label>
               <label className="field full">
-                Описание
+                {t("Описание")}
                 <textarea
                   rows={5}
                   value={courseDraft.description}
@@ -816,7 +858,7 @@ export function AdminPanel() {
                 />
               </label>
               <label className="field full">
-                Страница источника
+                {t("Страница источника")}
                 <input
                   type="url"
                   value={courseDraft.source_url}
@@ -831,12 +873,12 @@ export function AdminPanel() {
             </div>
             {error && (
               <div className="error-banner" role="alert">
-                {error}
+                {errorText(error)}
               </div>
             )}
             <div className="form-actions">
               <button className="button primary" disabled={busy}>
-                {busy ? "Сохраняем…" : "Сохранить курс"}
+                {busy ? t("Сохраняем…") : t("Сохранить курс")}
               </button>
             </div>
           </form>

@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/wiki-locale";
 import { useState } from "react";
 import { ArrowUpRight, BookOpen, Info } from "lucide-react";
 import { useCatalog, ResourceRow } from "./catalog-browser";
@@ -11,6 +12,7 @@ import {
 import { moduleLabel, kinds, seedCourses } from "@/lib/catalog";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 export function CourseDetail({ id }: { id: string }) {
+  const { t, locale, errorText } = useI18n();
   const [page, setPage] = useState(1);
   const [activeTab, setActiveTab] = useState("all");
   const { data, error } = useCatalog(
@@ -19,7 +21,7 @@ export function CourseDetail({ id }: { id: string }) {
   if (error)
     return (
       <div className="error-banner" role="alert">
-        {error}
+        {errorText(error)}
       </div>
     );
   if (!data) return <LoadingState />;
@@ -27,8 +29,10 @@ export function CourseDetail({ id }: { id: string }) {
   if (!c)
     return (
       <EmptyState
-        title="Курс не найден"
-        description="Вернитесь в каталог и выберите существующую дисциплину."
+        title={t("Курс не найден")}
+        description={t(
+          "Вернитесь в каталог и выберите существующую дисциплину.",
+        )}
       />
     );
   const resources = data.resources.filter((r) => r.course_id === id);
@@ -39,9 +43,9 @@ export function CourseDetail({ id }: { id: string }) {
     <>
       <Breadcrumbs
         items={[
-          { label: "Курсы", href: "/courses" },
+          { label: t("Курсы"), href: "/courses" },
           {
-            label: `${c.study_year} курс`,
+            label: t`${c.study_year} курс`,
             href: `/courses?year=${c.study_year}`,
           },
           { label: c.title },
@@ -53,13 +57,15 @@ export function CourseDetail({ id }: { id: string }) {
         </span>
         <span className="page-eyebrow">
           {c.academic_year} ·{" "}
-          {c.category === "Core" ? "Основная дисциплина" : c.category}
+          {c.category === "Core" ? t("Основная дисциплина") : c.category}
         </span>
         <h1>{c.title}</h1>
         <div className="detail-meta">
-          <a href={`/courses?year=${c.study_year}`}>{c.study_year} курс</a>
-          <span>{moduleLabel(c.modules)}</span>
-          <span>{c.resource_count} материалов</span>
+          <a
+            href={`/courses?year=${c.study_year}`}
+          >{t`${c.study_year} курс`}</a>
+          <span>{moduleLabel(c.modules, locale)}</span>
+          <span>{t`${c.resource_count} материалов`}</span>
         </div>
       </div>
       <div className="detail-layout">
@@ -72,9 +78,9 @@ export function CourseDetail({ id }: { id: string }) {
             }}
           >
             <TabsList className="content-tabs">
-              <TabsTrigger value="all">Все материалы</TabsTrigger>
-              <TabsTrigger value="exam">К экзамену</TabsTrigger>
-              <TabsTrigger value="about">О дисциплине</TabsTrigger>
+              <TabsTrigger value="all">{t("Все материалы")}</TabsTrigger>
+              <TabsTrigger value="exam">{t("К экзамену")}</TabsTrigger>
+              <TabsTrigger value="about">{t("О дисциплине")}</TabsTrigger>
             </TabsList>
             {["all", "exam"].map((tab) => (
               <TabsContent value={tab} key={tab}>
@@ -94,7 +100,7 @@ export function CourseDetail({ id }: { id: string }) {
                       return items.length ? (
                         <section className="material-group" key={key}>
                           <h2>
-                            {label} <span>{items.length}</span>
+                            {t(label)} <span>{items.length}</span>
                           </h2>
                           {items.map((r) => (
                             <ResourceRow key={r.id} resource={r} />
@@ -104,25 +110,32 @@ export function CourseDetail({ id }: { id: string }) {
                     })
                 ) : (
                   <EmptyState
-                    title="Здесь появятся материалы курса"
-                    description="Лекции, задачи и конспекты ещё не загружены. Пока можно обратиться к странице курса в исходной wiki, если она указана."
+                    title={t("Здесь появятся материалы курса")}
+                    description={t(
+                      "Лекции, задачи и конспекты ещё не загружены. Пока можно обратиться к странице курса в исходной wiki, если она указана.",
+                    )}
                   />
                 )}
               </TabsContent>
             ))}
             <TabsContent value="about">
               <div className="prose-card">
-                <h2>О дисциплине</h2>
+                <h2>{t("О дисциплине")}</h2>
                 <p className="preserve-text">
                   {c.description ||
                     (original
-                      ? "Описание ещё не добавлено. Исходная запись дисциплины взята из каталога Wiki ФКН; администратор может уточнять её данные."
-                      : "Описание ещё не добавлено. Курс создан администратором проекта.")}
+                      ? t(
+                          "Описание ещё не добавлено. Исходная запись дисциплины взята из каталога Wiki ФКН; администратор может уточнять её данные.",
+                        )
+                      : t(
+                          "Описание ещё не добавлено. Курс создан администратором проекта.",
+                        ))}
                 </p>
                 {original && (
                   <p>
-                    Оценивание, преподаватели и содержание занятий в исходном
-                    файле не указаны.
+                    {t(
+                      "Оценивание, преподаватели и содержание занятий в исходном файле не указаны.",
+                    )}
                   </p>
                 )}
               </div>
@@ -139,13 +152,17 @@ export function CourseDetail({ id }: { id: string }) {
         <aside>
           <div className="info-card">
             <Info size={22} />
-            <h2>Источник курса</h2>
+            <h2>{t("Источник курса")}</h2>
             {c.source_url ? (
               <>
                 <p>
                   {originalSource
-                    ? "Страница была отмечена как существующая в предоставленном снимке Wiki ФКН. Её актуальность может измениться."
-                    : "Источник указан администратором. Содержание и актуальность проверяйте на странице источника."}
+                    ? t(
+                        "Страница была отмечена как существующая в предоставленном снимке Wiki ФКН. Её актуальность может измениться.",
+                      )
+                    : t(
+                        "Источник указан администратором. Содержание и актуальность проверяйте на странице источника.",
+                      )}
                 </p>
                 <a
                   className="button"
@@ -153,23 +170,27 @@ export function CourseDetail({ id }: { id: string }) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {originalSource ? "Открыть Wiki ФКН" : "Открыть источник"}{" "}
+                  {originalSource
+                    ? t("Открыть Wiki ФКН")
+                    : t("Открыть источник")}{" "}
                   <ArrowUpRight size={16} />
                 </a>
               </>
             ) : (
               <p>
                 {original && !original.source_exists
-                  ? "В исходном снимке страница этой дисциплины ещё не была создана. Здесь можно собрать новые материалы."
-                  : "Ссылка на источник пока не добавлена."}
+                  ? t(
+                      "В исходном снимке страница этой дисциплины ещё не была создана. Здесь можно собрать новые материалы.",
+                    )
+                  : t("Ссылка на источник пока не добавлена.")}
               </p>
             )}
           </div>
           <div className="info-card plain">
-            <h2>Есть хороший конспект?</h2>
-            <p>Помоги следующим студентам разобраться в теме.</p>
+            <h2>{t("Есть хороший конспект?")}</h2>
+            <p>{t("Помоги следующим студентам разобраться в теме.")}</p>
             <a className="text-link" href="/about#contribute">
-              Как поделиться <ArrowUpRight size={16} />
+              {t("Как поделиться")} <ArrowUpRight size={16} />
             </a>
           </div>
         </aside>

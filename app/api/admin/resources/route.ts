@@ -1,3 +1,4 @@
+import { validationMessage } from "@/lib/validation-errors";
 import {
   apiError,
   boundedBody,
@@ -22,10 +23,7 @@ export async function PUT(request: Request) {
     }).formData();
     const parsed = resourceSchema.safeParse(Object.fromEntries(data));
     if (!parsed.success)
-      throw new HttpError(
-        400,
-        parsed.error.issues.map((i) => i.message).join(" "),
-      );
+      throw new HttpError(400, validationMessage(parsed.error));
     const r = parsed.data;
     const rawId = data.get("id");
     const id = typeof rawId === "string" && rawId ? rawId : crypto.randomUUID();
@@ -142,6 +140,6 @@ export async function PUT(request: Request) {
         console.error("orphan_file_cleanup", newKey, cleanupError);
       }
     }
-    return apiError(e);
+    return apiError(e, request);
   }
 }

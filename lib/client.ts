@@ -8,3 +8,11 @@ export async function readResponse<T>(response: Response): Promise<T> {
     );
   return (await response.json()) as T;
 }
+
+export function errorMessage(error: unknown): string {
+  return error instanceof TypeError || error instanceof SyntaxError
+    ? "Сервер временно недоступен. Попробуйте ещё раз."
+    : error instanceof Error
+      ? error.message
+      : "Сервер временно недоступен. Попробуйте ещё раз.";
+}

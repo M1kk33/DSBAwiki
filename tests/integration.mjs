@@ -138,6 +138,66 @@ test("DSBA Wiki integration against the persistent local D1/R2 server", async (t
   }
   admin = await (await request("/api/admin", {}, true)).json();
   assert.equal(admin.admin, true);
+  await t.test(
+    "locale cookies select server copy, metadata and API errors",
+    async () => {
+      for (const [locale, title, heading] of [
+        ["ru", "О проекте", "Знания становятся больше,"],
+        ["en", "About", "Knowledge grows"],
+        ["invalid", "О проекте", "Знания становятся больше,"],
+      ]) {
+        const headers = { Cookie: `dsba-wiki-locale=${locale}` };
+        const html = await (await request("/about", { headers })).text();
+        assert.match(
+          html,
+          new RegExp(`<html[^>]*lang="${locale === "en" ? "en" : "ru"}"`),
+        );
+        assert(html.includes(`<title>${title} · DSBA Wiki</title>`));
+        assert(html.includes(heading));
+        const denied = await request("/api/admin/courses", {
+          method: "POST",
+          headers: {
+            ...headers,
+            Origin: origin,
+            "Content-Type": "application/json",
+          },
+          body: "{}",
+        });
+        assert.equal(denied.status, 403);
+        const result = await denied.json();
+        assert.equal(result.errorKey, "Требуется доступ администратора.");
+        assert.equal(
+          result.error,
+          locale === "en"
+            ? "Administrator access is required."
+            : result.errorKey,
+        );
+      }
+      const invalid = await request("/api/admin/courses", {
+        method: "POST",
+        headers: {
+          Cookie: `${cookie}; dsba-wiki-locale=en`,
+          Origin: origin,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: "",
+          study_year: 6,
+          academic_year: "invalid",
+          modules: "",
+          category: "",
+          description: "",
+          source_url: "",
+        }),
+      });
+      assert.equal(invalid.status, 400);
+      const result = await invalid.json();
+      assert(!/[а-яё]/i.test(result.error), result.error);
+      assert(result.error.includes("Minimum characters: 1."));
+      assert(result.error.includes("Maximum value: 4."));
+      assert(/[а-яё]/i.test(result.errorKey));
+    },
+  );
   await t.test("CSRF protection rejects cross-origin mutations", async () =>
     assert.equal(
       (await json("/api/admin/courses", {}, true, "https://evil.invalid"))
@@ -230,6 +290,9 @@ test("DSBA Wiki integration against the persistent local D1/R2 server", async (t
       },
     );
     await t.test("publishing requires rights and attribution", async () => {
+      const invalidStatus = await save({ id, version: 1, status: "черновик" });
+      assert.equal(invalidStatus.response.status, 400);
+      assert.equal(invalidStatus.result.error, "Поле «Статус»: Выберите значение из списка.");
       assert.equal(
         (await save({ id, version: 1, status: "published" })).response.status,
         400,
@@ -270,6 +333,17 @@ test("DSBA Wiki integration against the persistent local D1/R2 server", async (t
           "list responses must not include full documents",
         );
         assert.equal((await request("/resources/" + id)).status, 200);
+        const english = await (
+          await request("/resources/" + id, {
+            headers: { Cookie: "dsba-wiki-locale=en" },
+          })
+        ).text();
+        assert(english.includes("Author / source"));
+        assert(english.includes("Integration test"));
+        assert(
+          english.includes("Тестовый текст"),
+          "English UI must preserve original Markdown content",
+        );
         const byCourse = await (
           await request(
             "/api/catalog?q=" + encodeURIComponent("ТЕСТОВАЯ ДИСЦИПЛИНА"),

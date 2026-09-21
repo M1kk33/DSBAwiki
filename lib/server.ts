@@ -1,3 +1,4 @@
+import { requestLocale, translateError } from "./i18n";
 import { env } from "cloudflare:workers";
 import { getChatGPTUser } from "@/app/chatgpt-auth";
 import { seedCourses, type Course, type Resource } from "./catalog";
@@ -203,18 +204,20 @@ export const noStore = {
   "Cache-Control": "no-store",
   "X-Content-Type-Options": "nosniff",
 };
-export function apiError(error: unknown) {
+export function apiError(error: unknown, request: Request) {
   if (error instanceof HttpError)
     return Response.json(
-      { error: error.message },
+      {
+        error: translateError(error.message, requestLocale(request)),
+        errorKey: error.message,
+      },
       { status: error.status, headers: noStore },
     );
   console.error("wiki_api_error", error);
+  const errorKey =
+    "Не удалось выполнить операцию. Попробуйте ещё раз; введённые данные сохранены в форме.";
   return Response.json(
-    {
-      error:
-        "Не удалось выполнить операцию. Попробуйте ещё раз; введённые данные сохранены в форме.",
-    },
+    { error: translateError(errorKey, requestLocale(request)), errorKey },
     { status: 503, headers: noStore },
   );
 }

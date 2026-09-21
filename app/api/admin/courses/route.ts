@@ -1,3 +1,4 @@
+import { validationMessage } from "@/lib/validation-errors";
 import {
   apiError,
   database,
@@ -15,10 +16,7 @@ export async function POST(request: Request) {
     const body = await readJson(request);
     const parsed = courseSchema.safeParse(body);
     if (!parsed.success)
-      throw new HttpError(
-        400,
-        parsed.error.issues.map((i) => i.message).join(" "),
-      );
+      throw new HttpError(400, validationMessage(parsed.error));
     const c = parsed.data;
     const id = body.id || crypto.randomUUID();
     if (typeof id !== "string" || id.length > 100)
@@ -61,6 +59,6 @@ export async function POST(request: Request) {
     }
     return Response.json({ id, updated_at: now }, { headers: noStore });
   } catch (e) {
-    return apiError(e);
+    return apiError(e, request);
   }
 }

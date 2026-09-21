@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/wiki-locale";
 import {
   Select,
   SelectContent,
@@ -28,9 +29,10 @@ export function PageControls({
   pages: number;
   onChange: (page: number) => void;
 }) {
+  const { t } = useI18n();
   if (pages < 2) return null;
   return (
-    <Pagination className="mt-6">
+    <Pagination className="mt-6" aria-label={t("Страницы результатов")}>
       <PaginationContent>
         <PaginationItem>
           <button
@@ -38,7 +40,7 @@ export function PageControls({
             disabled={page <= 1}
             onClick={() => onChange(page - 1)}
           >
-            Назад
+            {t("Назад")}
           </button>
         </PaginationItem>
         <PaginationItem>
@@ -52,7 +54,7 @@ export function PageControls({
             disabled={page >= pages}
             onClick={() => onChange(page + 1)}
           >
-            Далее
+            {t("Далее")}
           </button>
         </PaginationItem>
       </PaginationContent>
@@ -109,8 +111,9 @@ export function EmptyState({
   );
 }
 export function LoadingState() {
+  const { t } = useI18n();
   return (
-    <div aria-label="Загрузка" role="status" className="loading-cards">
+    <div aria-label={t("Загрузка")} role="status" className="loading-cards">
       {[0, 1, 2].map((i) => (
         <Skeleton className="h-36 w-full rounded-xl" key={i} />
       ))}
@@ -122,9 +125,10 @@ export function Breadcrumbs({
 }: {
   items: { label: string; href?: string }[];
 }) {
+  const { t } = useI18n();
   return (
-    <nav aria-label="Хлебные крошки" className="breadcrumbs">
-      <a href="/">Главная</a>
+    <nav aria-label={t("Хлебные крошки")} className="breadcrumbs">
+      <a href="/">{t("Главная")}</a>
       {items.map((item, i) => (
         <span key={i}>
           <ArrowRight size={12} />

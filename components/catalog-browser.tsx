@@ -1,14 +1,9 @@
 "use client";
+import { useI18n } from "@/components/wiki-locale";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import {
-  Search,
-  ArrowUpRight,
-  FileText,
-  Link2,
-  BookOpen,
-  RotateCcw,
-} from "lucide-react";
+import { errorMessage, readResponse } from "@/lib/client";
+import { Search, ArrowUpRight, Link2, BookOpen, RotateCcw } from "lucide-react";
 import { type Course, type Resource, kinds, moduleLabel } from "@/lib/catalog";
 import {
   Picker,
@@ -31,13 +26,16 @@ export function useCatalog(search = "") {
     const controller = new AbortController();
     fetch("/api/catalog?" + search, { signal: controller.signal })
       .then(async (r) => {
-        const d = (await r.json()) as CatalogData & { error?: string };
-        if (!r.ok) throw new Error(d.error);
+        const d = (await readResponse(r)) as CatalogData & {
+          errorKey?: string;
+          error?: string;
+        };
+        if (!r.ok) throw new Error(d.errorKey || d.error);
         setData(d);
         setError("");
       })
       .catch((e) => {
-        if (e.name !== "AbortError") setError(e.message);
+        if (e.name !== "AbortError") setError(errorMessage(e));
       });
     return () => controller.abort();
   }, [search]);
@@ -45,30 +43,32 @@ export function useCatalog(search = "") {
 }
 const normalize = (s: string) => s.normalize("NFKC").toLocaleLowerCase();
 export function CourseCard({ course: c }: { course: Course }) {
+  const { t, locale } = useI18n();
   return (
     <a className="catalog-card" href={`/courses/${c.id}`}>
       <div className="catalog-card-meta">
-        <span>{c.study_year} курс</span>
+        <span>{t`${c.study_year} курс`}</span>
         <span>{c.academic_year}</span>
         <ArrowUpRight size={18} />
       </div>
       <BookOpen className="catalog-icon" size={26} />
       <h2>{c.title}</h2>
-      <p>{c.category === "Core" ? "Основная дисциплина" : c.category}</p>
+      <p>{c.category === "Core" ? t("Основная дисциплина") : c.category}</p>
       <div className="catalog-card-foot">
-        <span>{moduleLabel(c.modules)}</span>
+        <span>{moduleLabel(c.modules, locale)}</span>
         <span>
           {c.resource_count
-            ? `${c.resource_count} материалов`
+            ? t`${c.resource_count} материалов`
             : c.source_exists
-              ? "Источник ФКН"
-              : "Ждёт материалов"}
+              ? t("Источник ФКН")
+              : t("Ждёт материалов")}
         </span>
       </div>
     </a>
   );
 }
 export function ResourceRow({ resource: r }: { resource: Resource }) {
+  const { t } = useI18n();
   return (
     <a className="resource-row" href={`/resources/${r.id}`}>
       <span className={`file-badge ${r.format}`}>
@@ -87,12 +87,13 @@ export function ResourceRow({ resource: r }: { resource: Resource }) {
         </small>
         <span className="resource-description">{r.description}</span>
       </span>
-      <span className="resource-kind">{kinds[r.kind]}</span>
+      <span className="resource-kind">{t(kinds[r.kind])}</span>
       <ArrowUpRight size={18} />
     </a>
   );
 }
 export function CatalogBrowser({ mode }: { mode: "courses" | "resources" }) {
+  const { t, errorText } = useI18n();
   const params = useSearchParams();
   const [q, setQ] = useState(params.get("q") || ""),
     [year, setYear] = useState(params.get("year") || ""),
@@ -167,128 +168,128 @@ export function CatalogBrowser({ mode }: { mode: "courses" | "resources" }) {
     <>
       <Breadcrumbs
         items={[
-          { label: mode === "courses" ? "Каталог курсов" : "Библиотека" },
+          { label: mode === "courses" ? t("Каталог курсов") : t("Библиотека") },
         ]}
       />
       <div className="page-heading">
         <span className="page-eyebrow">
-          {mode === "courses" ? "УЧЕБНЫЙ МАРШРУТ" : "МАТЕРИАЛЫ ДЛЯ УЧЁБЫ"}
+          {mode === "courses" ? t("УЧЕБНЫЙ МАРШРУТ") : t("МАТЕРИАЛЫ ДЛЯ УЧЁБЫ")}
         </span>
         <h1>
           {mode === "courses"
-            ? "Каждый курс — новая глава."
-            : "Всё нужное под рукой."}
+            ? t("Каждый курс — новая глава.")
+            : t("Всё нужное под рукой.")}
         </h1>
         <p>
           {mode === "courses"
-            ? "Найди свою дисциплину, открой темы и переходи к материалам."
-            : "Лекции, задачи, конспекты и полезные ссылки в одном месте."}
+            ? t("Найди свою дисциплину, открой темы и переходи к материалам.")
+            : t("Лекции, задачи, конспекты и полезные ссылки в одном месте.")}
         </p>
       </div>
       <div className="filter-panel">
         <label className="catalog-search">
           <Search size={20} />
           <input
-            aria-label="Поиск"
+            aria-label={t("Поиск")}
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder={
               mode === "courses"
-                ? "Название курса или направление"
-                : "Название, тема, автор или текст материала"
+                ? t("Название курса или направление")
+                : t("Название, тема, автор или текст материала")
             }
           />
           {q && (
-            <button onClick={() => setQ("")} aria-label="Очистить поиск">
+            <button onClick={() => setQ("")} aria-label={t("Очистить поиск")}>
               ×
             </button>
           )}
         </label>
         <div className="filter-row">
           <Picker
-            label="Год обучения"
+            label={t("Год обучения")}
             value={year}
             onChange={setYear}
             options={[
-              { value: "", label: "Все годы обучения" },
+              { value: "", label: t("Все годы обучения") },
               ...[1, 2, 3, 4].map((y) => ({
                 value: String(y),
-                label: `${y} курс`,
+                label: t`${y} курс`,
               })),
             ]}
           />
           <Picker
-            label="Учебный год"
+            label={t("Учебный год")}
             value={academic}
             onChange={setAcademic}
             options={[
-              { value: "", label: "Все учебные годы" },
+              { value: "", label: t("Все учебные годы") },
               ...Array.from(
                 new Set(data?.courses.map((c) => c.academic_year)),
               ).map((y) => ({ value: y, label: y })),
             ]}
           />
           <Picker
-            label="Семестр"
+            label={t("Семестр")}
             value={semester}
             onChange={setSemester}
             options={[
-              { value: "", label: "Оба семестра" },
-              { value: "1", label: "1 семестр · модули 1–2" },
-              { value: "2", label: "2 семестр · модули 3–4" },
+              { value: "", label: t("Оба семестра") },
+              { value: "1", label: t("1 семестр · модули 1–2") },
+              { value: "2", label: t("2 семестр · модули 3–4") },
             ]}
           />
           <Picker
-            label="Модуль"
+            label={t("Модуль")}
             value={module}
             onChange={setModule}
             options={[
-              { value: "", label: "Все модули" },
+              { value: "", label: t("Все модули") },
               ...[1, 2, 3, 4].map((m) => ({
                 value: String(m),
-                label: `Модуль ${m}`,
+                label: t`Модуль ${m}`,
               })),
             ]}
           />
           {mode === "resources" ? (
             <>
               <Picker
-                label="Тип материала"
+                label={t("Тип материала")}
                 value={kind}
                 onChange={setKind}
                 options={[
-                  { value: "", label: "Все типы" },
+                  { value: "", label: t("Все типы") },
                   ...Object.entries(kinds).map(([value, label]) => ({
                     value,
-                    label,
+                    label: t(label),
                   })),
                 ]}
               />
               <Picker
-                label="Курс"
+                label={t("Курс")}
                 value={course}
                 onChange={setCourse}
                 options={[
-                  { value: "", label: "Все дисциплины" },
+                  { value: "", label: t("Все дисциплины") },
                   ...(data?.courses || []).map((c) => ({
                     value: c.id,
-                    label: `${c.title} · ${c.study_year} курс`,
+                    label: t`${c.title} · ${c.study_year} курс`,
                   })),
                 ]}
               />
             </>
           ) : (
             <Picker
-              label="Направление"
+              label={t("Направление")}
               value={category}
               onChange={setCategory}
               options={[
-                { value: "", label: "Все направления" },
+                { value: "", label: t("Все направления") },
                 ...Array.from(
                   new Set(data?.courses.map((c) => c.category)),
                 ).map((v) => ({
                   value: v,
-                  label: v === "Core" ? "Основные дисциплины" : v,
+                  label: v === "Core" ? t("Основные дисциплины") : v,
                 })),
               ]}
             />
@@ -314,20 +315,21 @@ export function CatalogBrowser({ mode }: { mode: "courses" | "resources" }) {
                 setCategory("");
               }}
             >
-              <RotateCcw size={14} /> Сбросить
+              <RotateCcw size={14} /> {t("Сбросить")}
             </button>
           )}
         </div>
       </div>
       <p className="filter-note">
-        В источнике используются модули. Семестры здесь — навигационная
-        группировка модулей 1–2 и 3–4.
+        {t(
+          "В источнике используются модули. Семестры здесь — навигационная группировка модулей 1–2 и 3–4.",
+        )}
       </p>
       {error ? (
         <div className="error-banner" role="alert">
-          {error}
+          {errorText(error)}
           <button className="button" onClick={() => window.location.reload()}>
-            Попробовать снова
+            {t("Попробовать снова")}
           </button>
         </div>
       ) : !data ? (
@@ -337,7 +339,7 @@ export function CatalogBrowser({ mode }: { mode: "courses" | "resources" }) {
           {mode === "courses" ? (
             <>
               <div className="results-count" role="status">
-                Найдено дисциплин: {visibleCourses.length}
+                {t("Найдено дисциплин:")} {visibleCourses.length}
               </div>
               {visibleCourses.length ? (
                 <div className="catalog-grid">
@@ -347,15 +349,17 @@ export function CatalogBrowser({ mode }: { mode: "courses" | "resources" }) {
                 </div>
               ) : (
                 <EmptyState
-                  title="Таких курсов пока нет"
-                  description="Попробуйте другое название или сбросьте фильтры."
+                  title={t("Таких курсов пока нет")}
+                  description={t(
+                    "Попробуйте другое название или сбросьте фильтры.",
+                  )}
                 />
               )}
             </>
           ) : (
             <>
               <div className="results-count" role="status">
-                Материалов: {data.resourceTotal}
+                {t("Материалов:")} {data.resourceTotal}
               </div>
               {resources.length ? (
                 <div className="resource-list">
@@ -367,10 +371,12 @@ export function CatalogBrowser({ mode }: { mode: "courses" | "resources" }) {
                 <EmptyState
                   title={
                     q || kind || course
-                      ? "Материалы не найдены"
-                      : "Библиотека готова к первым материалам"
+                      ? t("Материалы не найдены")
+                      : t("Библиотека готова к первым материалам")
                   }
-                  description="В исходном HTML были только ссылки на курсы. Документы появятся после загрузки и проверки администратором."
+                  description={t(
+                    "В исходном HTML были только ссылки на курсы. Документы появятся после загрузки и проверки администратором.",
+                  )}
                 />
               )}
               <PageControls
@@ -381,7 +387,7 @@ export function CatalogBrowser({ mode }: { mode: "courses" | "resources" }) {
               {q && visibleCourses.length > 0 && (
                 <section className="section-block">
                   <div className="section-heading">
-                    <h2>Подходящие курсы</h2>
+                    <h2>{t("Подходящие курсы")}</h2>
                   </div>
                   <div className="catalog-grid">
                     {visibleCourses.map((c) => (

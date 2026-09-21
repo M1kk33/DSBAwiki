@@ -37,6 +37,6 @@ export async function GET(
       },
     });
   } catch (e) {
-    return apiError(e);
+    return apiError(e, request);
   }
 }

@@ -20,7 +20,12 @@ export function wikiDevUploadLimit(): Plugin {
           });
           response.end(
             JSON.stringify({
-              error: "Файл слишком большой. Максимум — 16 МиБ.",
+              error: /(?:^|;\s*)dsba-wiki-locale=en(?:;|$)/.test(
+                request.headers.cookie || "",
+              )
+                ? "The file is too large. Maximum size: 16 MB."
+                : "Файл слишком большой. Максимум — 16 МБ.",
+              errorKey: "Файл слишком большой. Максимум — 16 МБ.",
             }),
           );
           request.resume();

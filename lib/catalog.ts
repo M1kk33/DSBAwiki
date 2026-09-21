@@ -1,4 +1,5 @@
 import reference from "@/content/reference.json";
+import { createTranslator, type Locale } from "./i18n";
 export const academicYear = reference.academicYear;
 export const sourceUrl = reference.sourceUrl;
 export const seedCourses = reference.courses.map((c, i) => ({
@@ -49,5 +50,9 @@ export const kinds: Record<string, string> = {
   textbook: "Учебники",
   supplementary: "Дополнительно",
 };
-export const moduleLabel = (modules: string) =>
-  modules ? `Модули ${modules.split(",").join(", ")}` : "Модули уточняются";
+export function moduleLabel(modules: string, locale: Locale = "ru") {
+  const t = createTranslator(locale);
+  return modules
+    ? t`Модули ${modules.split(",").join(", ")}`
+    : t("Модули уточняются");
+}

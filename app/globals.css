@@ -1835,7 +1835,8 @@ textarea::placeholder {
     font-size: 13px;
   }
 }
-.theme-toggle {
+.theme-toggle,
+.language-toggle {
   width: 40px;
   height: 40px;
   flex-shrink: 0;
@@ -1846,12 +1847,28 @@ textarea::placeholder {
   background: var(--card);
   color: var(--primary);
 }
-.theme-toggle:hover {
+.theme-toggle:hover,
+.language-toggle:hover {
   background: var(--accent);
   color: var(--accent-foreground);
 }
-.theme-toggle:focus-visible {
+.theme-toggle:focus-visible,
+.language-toggle:focus-visible {
   outline: 2px solid var(--ring);
+}
+.language-toggle {
+  width: 44px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.language-toggle:disabled {
+  opacity: 0.6;
+}
+@media (min-width: 768px) and (max-width: 1100px) {
+  .topbar-context > span {
+    display: none;
+  }
 }
 .hero-search input,
 .catalog-search input {
@@ -1883,7 +1900,8 @@ textarea::placeholder {
   text-shadow: 0 1px 4px #000;
 }
 @media (max-width: 480px) {
-  .topbar-context > span {
+  .topbar-context > span,
+  .academic-pill {
     display: none;
   }
 }

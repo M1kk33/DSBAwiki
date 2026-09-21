@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import { useI18n } from "./wiki-locale";
 type ToolContext = {
   registerTool: (
     tool: {
@@ -14,6 +15,7 @@ type ToolContext = {
   ) => void | Promise<void>;
 };
 export function WikiTools() {
+  const { t } = useI18n();
   useEffect(() => {
     const context = (document as Document & { modelContext?: ToolContext })
       .modelContext;
@@ -23,7 +25,7 @@ export function WikiTools() {
       context.registerTool(
         {
           name: "find_wiki_materials",
-          title: "Поиск в DSBA Wiki",
+          title: t("Поиск в DSBA Wiki"),
           description:
             "Read published educational resources by title, topic, author or text. Does not publish or edit content.",
           inputSchema: {
@@ -115,6 +117,6 @@ export function WikiTools() {
       ),
     ).catch(() => {});
     return () => lifecycle.abort();
-  }, []);
+  }, [t]);
   return null;
 }
