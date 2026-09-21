@@ -1,0 +1,911 @@
+{
+  "sourceFile": "Wikifcs.html",
+  "sourceUrl": "https://wiki.cs.hse.ru/Wiki_%D0%A4%D0%9A%D0%9D#DSBA",
+  "sourceRevision": 97638,
+  "sourceCachedAt": "2026-09-20T19:49:12",
+  "programLabel": "ПАД",
+  "academicYear": "2026/2027",
+  "structure": [
+    "academicYear",
+    "studyYear",
+    "group",
+    "course",
+    "modules"
+  ],
+  "note": "The source uses modules 1–4, not explicit DSBA semesters. Course page links only; no document contents supplied.",
+  "courses": [
+    {
+      "studyYear": 1,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Calculus 1 (modules 1-4)",
+      "title": "Calculus 1",
+      "sourcePageTitle": "Calculus 1 DSBA 2026/2027",
+      "sourceUrl": "https://wiki.cs.hse.ru/Calculus_1_DSBA_2026/2027",
+      "sourcePageExists": true,
+      "modules": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 1,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "C++ Programming Language (modules 1-2)",
+      "title": "C++ Programming Language",
+      "sourcePageTitle": "C++ Programming Language DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=C%2B%2B_Programming_Language_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 1,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "English Language (modules 1-4)",
+      "title": "English Language",
+      "sourcePageTitle": "English DSBA 2026/2027",
+      "sourceUrl": "https://wiki.cs.hse.ru/English_DSBA_2026/2027",
+      "sourcePageExists": true,
+      "modules": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 1,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Linear Algebra and Geometry (modules 1-4)",
+      "title": "Linear Algebra and Geometry",
+      "sourcePageTitle": "LAaG DSBA 2026/2027",
+      "sourceUrl": "https://wiki.cs.hse.ru/LAaG_DSBA_2026/2027",
+      "sourcePageExists": true,
+      "modules": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 1,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Discrete Mathematics 1 (modules 1-3)",
+      "title": "Discrete Mathematics 1",
+      "sourcePageTitle": "Discrete Mathematics 1 DSBA 2026/2027",
+      "sourceUrl": "https://wiki.cs.hse.ru/Discrete_Mathematics_1_DSBA_2026/2027",
+      "sourcePageExists": true,
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 1,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Russian History (modules 1-4)",
+      "title": "Russian History",
+      "sourcePageTitle": "Russian History DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Russian_History_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 1,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Economics (modules 2-3)",
+      "title": "Economics",
+      "sourcePageTitle": "Economics DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Economics_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        2,
+        3
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 1,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Foundations of Russian Statehood (module 3)",
+      "title": "Foundations of Russian Statehood",
+      "sourcePageTitle": "Foundations of Russian Statehood DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Foundations_of_Russian_Statehood_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 1,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Python for Data Science (module 3)",
+      "title": "Python for Data Science",
+      "sourcePageTitle": "Python for Data Science DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Python_for_Data_Science_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 1,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Algebra (module 4)",
+      "title": "Algebra",
+      "sourcePageTitle": "Algebra DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Algebra_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 1,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Algorithms and Data Structures 1 (module 4)",
+      "title": "Algorithms and Data Structures 1",
+      "sourcePageTitle": "Algorithms and Data Structures 1 DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Algorithms_and_Data_Structures_1_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 1,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Fundamentals of Software Engineering (module 4)",
+      "title": "Fundamentals of Software Engineering",
+      "sourcePageTitle": "Fundamentals of Software Engineering DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Fundamentals_of_Software_Engineering_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 2,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Algorithms and Data Structures (modules 1-3)",
+      "title": "Algorithms and Data Structures",
+      "sourcePageTitle": "Algorithms and Data Structures DSBA 2026/2027",
+      "sourceUrl": "https://wiki.cs.hse.ru/Algorithms_and_Data_Structures_DSBA_2026/2027",
+      "sourcePageExists": true,
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 2,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Discrete Mathematics 2 (modules 1-2)",
+      "title": "Discrete Mathematics 2",
+      "sourcePageTitle": "Discrete Mathematics 2 DSBA 2026/2027",
+      "sourceUrl": "https://wiki.cs.hse.ru/Discrete_Mathematics_2_DSBA_2026/2027",
+      "sourcePageExists": true,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 2,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Calculus 2 (modules 1-2)",
+      "title": "Calculus 2",
+      "sourcePageTitle": "Calculus 2 DSBA 2026/2027",
+      "sourceUrl": "https://wiki.cs.hse.ru/Calculus_2_DSBA_2026/2027",
+      "sourcePageExists": true,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 2,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Probability Theory (modules 1-2)",
+      "title": "Probability Theory",
+      "sourcePageTitle": "Probability Theory DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Probability_Theory_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 2,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Introduction to Micro and Macroeconomics (modules 1-4)",
+      "title": "Introduction to Micro and Macroeconomics",
+      "sourcePageTitle": "Introduction to Micro and Macroeconomics DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Introduction_to_Micro_and_Macroeconomics_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 2,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Computer Architecture and Operating Systems (modules 3-4)",
+      "title": "Computer Architecture and Operating Systems",
+      "sourcePageTitle": "Computer Architecture and Operating Systems DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Computer_Architecture_and_Operating_Systems_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 2,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Mathematical Statistics (modules 3-4)",
+      "title": "Mathematical Statistics",
+      "sourcePageTitle": "Mathematical Statistics DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Mathematical_Statistics_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 2,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Machine Learning 1  (modules 3-4)",
+      "title": "Machine Learning 1",
+      "sourcePageTitle": "Machine Learning 1 DSBA 2026/2027 modules 3-4 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Machine_Learning_1_DSBA_2026/2027_modules_3-4&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 2,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Differential Equations (modules (3-4)",
+      "title": "Differential Equations",
+      "sourcePageTitle": "Differential Equations DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Differential_Equations_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 2,
+      "academicYear": "2026/2027",
+      "group": "Minors",
+      "displayTitle": "Business and Management in Global Context (modules 1-4)",
+      "title": "Business and Management in Global Context",
+      "sourcePageTitle": "Business and Management in Global Context DSBA 2026/2027",
+      "sourceUrl": "https://wiki.cs.hse.ru/Business_and_Management_in_Global_Context_DSBA_2026/2027",
+      "sourcePageExists": true,
+      "modules": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 2,
+      "academicYear": "2026/2027",
+      "group": "Minors",
+      "displayTitle": "Introduction to Finance (modules 1-4)",
+      "title": "Introduction to Finance",
+      "sourcePageTitle": "Introduction to Finance DSBA 2026/2027",
+      "sourceUrl": "https://wiki.cs.hse.ru/Introduction_to_Finance_DSBA_2026/2027",
+      "sourcePageExists": true,
+      "modules": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Databases (modules 1-2)",
+      "title": "Databases",
+      "sourcePageTitle": "Databases DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Databases_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Deep Learning (modules 1-2)",
+      "title": "Deep Learning",
+      "sourcePageTitle": "Deep Learning DSBA 2026/2027",
+      "sourceUrl": "https://wiki.cs.hse.ru/Deep_Learning_DSBA_2026/2027",
+      "sourcePageExists": true,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Optimization Methods (modules 1-2)",
+      "title": "Optimization Methods",
+      "sourcePageTitle": "Optimization Methods DSBA 2026/2027",
+      "sourceUrl": "https://wiki.cs.hse.ru/Optimization_Methods_DSBA_2026/2027",
+      "sourcePageExists": true,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Stochastic processes and applications (modules 1-2)",
+      "title": "Stochastic processes and applications",
+      "sourcePageTitle": "Stochastic processes and applications DSBA 2026/2027",
+      "sourceUrl": "https://wiki.cs.hse.ru/Stochastic_processes_and_applications_DSBA_2026/2027",
+      "sourcePageExists": true,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Time Series Analysis (modules 3-4)",
+      "title": "Time Series Analysis",
+      "sourcePageTitle": "Time Series Analysis DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Time_Series_Analysis_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Minors",
+      "displayTitle": "Introduction to Entrepreneurship (business minor, modules 1-2)",
+      "title": "Introduction to Entrepreneurship",
+      "sourcePageTitle": "Introduction to Entrepreneurship DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Introduction_to_Entrepreneurship_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Minors",
+      "displayTitle": "Information Systems Management (business minor, modules 3-4)",
+      "title": "Information Systems Management",
+      "sourcePageTitle": "Information Systems Management DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Information_Systems_Management_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Minors",
+      "displayTitle": "Elements of Econometrics (finance minor, modules 1-4)",
+      "title": "Elements of Econometrics",
+      "sourcePageTitle": "Econometrics DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Econometrics_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Specialization Data Science in Business",
+      "displayTitle": "Research Seminar \"Data Analysis in Business“ (modules 1-4)",
+      "title": "Research Seminar \"Data Analysis in Business“",
+      "sourcePageTitle": "Research Seminar \"Data Analysis in Business\" DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Research_Seminar_%22Data_Analysis_in_Business%22_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Specialization Data Science in Business",
+      "displayTitle": "Product Development: From Idea to Production (modules 1-2)",
+      "title": "Product Development: From Idea to Production",
+      "sourcePageTitle": "Product Development: From Idea to Production DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Product_Development:_From_Idea_to_Production_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Specialization Data Science in Business",
+      "displayTitle": "Investment Management for Business (modules 3-4)",
+      "title": "Investment Management for Business",
+      "sourcePageTitle": "Investment Management for Business DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Investment_Management_for_Business_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Specialization Data Science in Finance",
+      "displayTitle": "Research Seminar \"Data Science in Finance\" (modules 1-4)",
+      "title": "Research Seminar \"Data Science in Finance\"",
+      "sourcePageTitle": "Research Seminar \"Data Science in Finance\" DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Research_Seminar_%22Data_Science_in_Finance%22_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Specialization Data Science in Finance",
+      "displayTitle": "Financial Mathematics (modules 1-2)",
+      "title": "Financial Mathematics",
+      "sourcePageTitle": "Financial Mathematics DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Financial_Mathematics_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Specialization Data Science in Finance",
+      "displayTitle": "Risk Management in Bank (modules 3-4)",
+      "title": "Risk Management in Bank",
+      "sourcePageTitle": "Risk Management in Bank DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Risk_Management_in_Bank_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Specialization Data Analysis in Applied Research",
+      "displayTitle": "Research Seminar \"Data Science in Applied Research\" (modules 1-4)",
+      "title": "Research Seminar \"Data Science in Applied Research\"",
+      "sourcePageTitle": "Research Seminar \"Data Science in Applied Research\" DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Research_Seminar_%22Data_Science_in_Applied_Research%22_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Specialization Data Analysis in Applied Research",
+      "displayTitle": "Methods of Mathematical Modeling (modules 1-2)",
+      "title": "Methods of Mathematical Modeling",
+      "sourcePageTitle": "Methods of Mathematical Modeling DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Methods_of_Mathematical_Modeling_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Specialization Data Analysis in Applied Research",
+      "displayTitle": "Applied Statistics for Machine Learning (modules 3-4)",
+      "title": "Applied Statistics for Machine Learning",
+      "sourcePageTitle": "Applied Statistics for Machine Learning DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Applied_Statistics_for_Machine_Learning_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Electives (modules 3-4)",
+      "displayTitle": "Operations Research and Game Theory",
+      "title": "Operations Research and Game Theory",
+      "sourcePageTitle": "Operations Research and Game Theory DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Operations_Research_and_Game_Theory_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": true
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Electives (modules 3-4)",
+      "displayTitle": "Advanced Statistical Methods",
+      "title": "Advanced Statistical Methods",
+      "sourcePageTitle": "Advanced Statistical Methods DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Advanced_Statistical_Methods_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": true
+    },
+    {
+      "studyYear": 3,
+      "academicYear": "2026/2027",
+      "group": "Electives (modules 3-4)",
+      "displayTitle": "Cоmputer Vision",
+      "title": "Cоmputer Vision",
+      "sourcePageTitle": "Cоmputer Vision DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=C%D0%BEmputer_Vision_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3,
+        4
+      ],
+      "modulesInheritedFromGroup": true
+    },
+    {
+      "studyYear": 4,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Strategy (modules 1-3)",
+      "title": "Strategy",
+      "sourcePageTitle": "Strategy DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Strategy_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 4,
+      "academicYear": "2026/2027",
+      "group": "Core",
+      "displayTitle": "Statistical Methods for Market Research (module 3)",
+      "title": "Statistical Methods for Market Research",
+      "sourcePageTitle": "Statistical Methods for Market Research DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Statistical_Methods_for_Market_Research_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 4,
+      "academicYear": "2026/2027",
+      "group": "Specialization Data Science in Business",
+      "displayTitle": "Research Seminar \"Data Analysis in Business 2“ (modules 1-3)",
+      "title": "Research Seminar \"Data Analysis in Business 2“",
+      "sourcePageTitle": "Research Seminar \"Data Analysis in Business 2\" DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Research_Seminar_%22Data_Analysis_in_Business_2%22_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 4,
+      "academicYear": "2026/2027",
+      "group": "Specialization Data Science in Business",
+      "displayTitle": "Core Management Concepts (modules 1-3)",
+      "title": "Core Management Concepts",
+      "sourcePageTitle": "Core Management Concepts DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Core_Management_Concepts_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 4,
+      "academicYear": "2026/2027",
+      "group": "Specialization Data Science in Finance",
+      "displayTitle": "Research Seminar \"Data Science in Financial Markets\" (modules 1-3)",
+      "title": "Research Seminar \"Data Science in Financial Markets\"",
+      "sourcePageTitle": "Research Seminar \"Data Science in Financial Markets\" DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Research_Seminar_%22Data_Science_in_Financial_Markets%22_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 4,
+      "academicYear": "2026/2027",
+      "group": "Specialization Data Science in Finance",
+      "displayTitle": "Asset Pricing and Financial Markets (modules 1-3)",
+      "title": "Asset Pricing and Financial Markets",
+      "sourcePageTitle": "Asset Pricing and Financial Markets DSBA 2026/2027",
+      "sourceUrl": "https://wiki.cs.hse.ru/Asset_Pricing_and_Financial_Markets_DSBA_2026/2027",
+      "sourcePageExists": true,
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 4,
+      "academicYear": "2026/2027",
+      "group": "Specialization Data Analysis in Applied Research",
+      "displayTitle": "Research Seminar \"Data Science in Applied Research 2\" (modules 1-3)",
+      "title": "Research Seminar \"Data Science in Applied Research 2\"",
+      "sourcePageTitle": "Research Seminar \"Data Science in Applied Research 2\" DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Research_Seminar_%22Data_Science_in_Applied_Research_2%22_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 4,
+      "academicYear": "2026/2027",
+      "group": "Specialization Data Analysis in Applied Research",
+      "displayTitle": "Classical and Neural Modeling (modules 1-3)",
+      "title": "Classical and Neural Modeling",
+      "sourcePageTitle": "Classical and Neural Modeling DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Classical_and_Neural_Modeling_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "modulesInheritedFromGroup": false
+    },
+    {
+      "studyYear": 4,
+      "academicYear": "2026/2027",
+      "group": "Electives block 1 (modules 1-2)",
+      "displayTitle": "Introduction to the Study of Language for Computer Scientists",
+      "title": "Introduction to the Study of Language for Computer Scientists",
+      "sourcePageTitle": "Introduction to the Study of Language for Computer Scientists DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Introduction_to_the_Study_of_Language_for_Computer_Scientists_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": true
+    },
+    {
+      "studyYear": 4,
+      "academicYear": "2026/2027",
+      "group": "Electives block 1 (modules 1-2)",
+      "displayTitle": "Quantitative Finance",
+      "title": "Quantitative Finance",
+      "sourcePageTitle": "Quantitative Finance DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Quantitative_Finance_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": true
+    },
+    {
+      "studyYear": 4,
+      "academicYear": "2026/2027",
+      "group": "Electives block 1 (modules 1-2)",
+      "displayTitle": "Information Security Risk Management",
+      "title": "Information Security Risk Management",
+      "sourcePageTitle": "Information Security Risk Management DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Information_Security_Risk_Management_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": true
+    },
+    {
+      "studyYear": 4,
+      "academicYear": "2026/2027",
+      "group": "Electives block 1 (modules 1-2)",
+      "displayTitle": "Generative Models in Machine Learning",
+      "title": "Generative Models in Machine Learning",
+      "sourcePageTitle": "Generative Models in Machine Learning DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Generative_Models_in_Machine_Learning_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": true
+    },
+    {
+      "studyYear": 4,
+      "academicYear": "2026/2027",
+      "group": "Electives block 1 (modules 1-2)",
+      "displayTitle": "Natural Language Processing",
+      "title": "Natural Language Processing",
+      "sourcePageTitle": "Natural Language Processing DSBA 2026/2027",
+      "sourceUrl": "https://wiki.cs.hse.ru/Natural_Language_Processing_DSBA_2026/2027",
+      "sourcePageExists": true,
+      "modules": [
+        1,
+        2
+      ],
+      "modulesInheritedFromGroup": true
+    },
+    {
+      "studyYear": 4,
+      "academicYear": "2026/2027",
+      "group": "Electives block 2 (module 3)",
+      "displayTitle": "Information Systems",
+      "title": "Information Systems",
+      "sourcePageTitle": "Information Systems DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Information_Systems_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3
+      ],
+      "modulesInheritedFromGroup": true
+    },
+    {
+      "studyYear": 4,
+      "academicYear": "2026/2027",
+      "group": "Electives block 2 (module 3)",
+      "displayTitle": "Recommender Systems",
+      "title": "Recommender Systems",
+      "sourcePageTitle": "Recommender Systems DSBA 2026/2027 (страница не существует)",
+      "sourceUrl": "https://wiki.cs.hse.ru/index.php?title=Recommender_Systems_DSBA_2026/2027&action=edit&redlink=1",
+      "sourcePageExists": false,
+      "modules": [
+        3
+      ],
+      "modulesInheritedFromGroup": true
+    }
+  ]
+}
