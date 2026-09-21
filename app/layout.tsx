@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { WikiShell } from "@/components/wiki-shell";
 import { WikiTools } from "@/components/wiki-tools";
+import { WikiThemeProvider } from "@/components/wiki-theme";
 import "./globals.css";
 export const metadata: Metadata = {
   title: {
@@ -17,10 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru">
+    <html lang="ru" suppressHydrationWarning>
       <body>
-        <WikiShell>{children}</WikiShell>
-        <WikiTools />
+        <WikiThemeProvider>
+          <WikiShell>{children}</WikiShell>
+          <WikiTools />
+        </WikiThemeProvider>
       </body>
     </html>
   );

@@ -26,6 +26,7 @@ import {
   SidebarInset,
 } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeToggle } from "@/components/wiki-theme";
 const links = [
   { href: "/", text: "Главная", icon: Home },
   { href: "/courses", text: "Каталог курсов", icon: BookOpen },
@@ -124,6 +125,7 @@ export function WikiShell({ children }: { children: React.ReactNode }) {
           <a href="/resources" className="top-search">
             <Search size={16} /> Поиск по wiki
           </a>
+          <ThemeToggle />
           <span className="academic-pill">2026 / 2027</span>
         </header>
         <main id="main" className="main-content">
