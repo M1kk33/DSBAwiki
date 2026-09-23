@@ -1144,7 +1144,42 @@ textarea::placeholder {
   width: min(100%, 300px);
 }
 .content-tabs {
-  background: var(--theme-soft, #eaf0e2);
+  width: 100%;
+  min-height: 52px;
+  justify-content: flex-start;
+  gap: 28px;
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.content-tabs .content-tab {
+  flex: 0 0 auto;
+  min-height: 51px;
+  padding: 0 2px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--muted-foreground);
+  font-size: 14px;
+  font-weight: 500;
+}
+.content-tabs .content-tab:hover,
+.content-tabs .content-tab[data-state="active"] {
+  background: transparent;
+  box-shadow: none;
+  color: var(--foreground);
+}
+.content-tabs .content-tab[data-state="active"] {
+  font-weight: 650;
+}
+.content-tabs .content-tab::after {
+  bottom: -1px;
+  height: 2px;
+  background: var(--primary);
 }
 .info-card {
   border: 1px solid var(--border);
@@ -1806,9 +1841,11 @@ textarea::placeholder {
   .content-tabs {
     width: 100%;
   }
-  .content-tabs button {
-    font-size: 12px;
-    padding: 6px;
+  .content-tabs {
+    gap: 22px;
+  }
+  .content-tabs .content-tab {
+    font-size: 14px;
   }
   .about-intro {
     grid-template-columns: 1fr;

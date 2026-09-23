@@ -97,10 +97,10 @@ export function CourseDetail({ id }: { id: string }) {
               setPage(1);
             }}
           >
-            <TabsList className="content-tabs">
-              <TabsTrigger value="all">{t("Все материалы")}</TabsTrigger>
-              <TabsTrigger value="exam">{t("К экзамену")}</TabsTrigger>
-              <TabsTrigger value="about">{t("О дисциплине")}</TabsTrigger>
+            <TabsList variant="line" className="content-tabs">
+              <TabsTrigger className="content-tab" value="all">{t("Материалы")}</TabsTrigger>
+              <TabsTrigger className="content-tab" value="exam">{t("К экзамену")}</TabsTrigger>
+              <TabsTrigger className="content-tab" value="about">{t("О курсе")}</TabsTrigger>
             </TabsList>
             {["all", "exam"].map((tab) => (
               <TabsContent value={tab} key={tab}>
