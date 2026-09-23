@@ -3,6 +3,7 @@ import { useI18n } from "@/components/wiki-locale";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { errorMessage, readResponse } from "@/lib/client";
+import { formatResourceCount } from "@/lib/i18n";
 import { Search, ArrowUpRight, Link2, BookOpen, RotateCcw } from "lucide-react";
 import { type Course, type Resource, kinds, moduleLabel } from "@/lib/catalog";
 import {
@@ -70,7 +71,7 @@ export function CourseCard({ course: c }: { course: Course }) {
         <span>{moduleLabel(c.modules, locale)}</span>
         <span>
           {c.resource_count
-            ? t`${c.resource_count} материалов`
+            ? formatResourceCount(c.resource_count, locale)
             : c.source_exists
               ? t("Источник ФКН")
               : t("Ждёт материалов")}
@@ -105,7 +106,7 @@ export function ResourceRow({ resource: r }: { resource: Resource }) {
   );
 }
 export function CatalogBrowser({ mode }: { mode: "courses" | "resources" }) {
-  const { t, errorText } = useI18n();
+  const { t, errorText, locale } = useI18n();
   const params = useSearchParams();
   const [q, setQ] = useState(params.get("q") || ""),
     [year, setYear] = useState(params.get("year") || ""),
@@ -371,7 +372,7 @@ export function CatalogBrowser({ mode }: { mode: "courses" | "resources" }) {
           ) : (
             <>
               <div className="results-count" role="status">
-                {t("Материалов:")} {data.resourceTotal}
+                {formatResourceCount(data.resourceTotal, locale)}
               </div>
               {resources.length ? (
                 <div className="resource-list">

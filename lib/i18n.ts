@@ -3,6 +3,14 @@ import english from "./locales/en.json";
 export type Locale = "ru" | "en";
 export const localeCookie = "dsba-wiki-locale";
 export const dateLocale = { ru: "ru-RU", en: "en-GB" } as const;
+export function formatResourceCount(count: number, locale: Locale) {
+  const plural = new Intl.PluralRules(locale).select(count);
+  const noun =
+    locale === "en"
+      ? plural === "one" ? "resource" : "resources"
+      : ({ one: "материал", few: "материала", many: "материалов", other: "материала" } as Record<string, string>)[plural] ?? "материалов";
+  return `${new Intl.NumberFormat(locale).format(count)} ${noun}`;
+}
 export const parseLocale = (value?: string): Locale =>
   value === "en" ? "en" : "ru";
 export const requestLocale = (request: Request): Locale =>

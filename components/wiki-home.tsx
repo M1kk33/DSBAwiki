@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useCatalog, ResourceRow } from "./catalog-browser";
 import { seedCourses, moduleLabel } from "@/lib/catalog";
+import { formatResourceCount } from "@/lib/i18n";
 export function WikiHome() {
   const { t, locale } = useI18n();
   const { data, error } = useCatalog("limit=4");
@@ -189,7 +190,7 @@ export function WikiHome() {
           </h2>
           <p>
             {data?.resourceTotal
-              ? t`В библиотеке уже ${data.resourceTotal} материалов. Находи нужное по курсу, теме и типу документа.`
+              ? t`В библиотеке уже ${formatResourceCount(data.resourceTotal, locale)}. Находи нужное по курсу, теме и типу документа.`
               : t(
                   "Здесь будут жить лекции, задачи и ваши лучшие конспекты. Первые материалы ещё ждут загрузки.",
                 )}

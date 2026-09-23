@@ -10,6 +10,7 @@ import {
   PageControls,
 } from "./wiki-controls";
 import { moduleLabel, kinds, seedCourses } from "@/lib/catalog";
+import { formatResourceCount } from "@/lib/i18n";
 import { Markdown } from "./markdown";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import courseDescriptions from "@/content/course-descriptions.json";
@@ -85,7 +86,7 @@ export function CourseDetail({ id }: { id: string }) {
             href={`/courses?year=${c.study_year}`}
           >{t`${c.study_year} курс`}</a>
           <span>{moduleLabel(c.modules, locale)}</span>
-          <span>{t`${c.resource_count} материалов`}</span>
+          <span>{formatResourceCount(c.resource_count, locale)}</span>
         </div>
       </div>
       <div className="detail-layout">

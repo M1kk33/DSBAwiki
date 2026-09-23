@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { type Course, type Resource, kinds } from "@/lib/catalog";
+import { formatResourceCount } from "@/lib/i18n";
 import {
   Breadcrumbs,
   LoadingState,
@@ -90,7 +91,7 @@ const statuses: Record<string, string> = {
   archived: "Архив",
 };
 export function AdminPanel() {
-  const { t, errorText } = useI18n();
+  const { t, errorText, locale } = useI18n();
   const [data, setData] = useState<AdminData | null>(null),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false),
@@ -260,7 +261,7 @@ export function AdminPanel() {
         ),
       );
       toast.success(
-        saved > 1 ? t`Загружено материалов: ${saved}` : t("Материал сохранён"),
+        saved > 1 ? t`Загружено: ${formatResourceCount(saved, locale)}` : t("Материал сохранён"),
       );
     } catch (e) {
       if (saved) {
