@@ -1323,6 +1323,44 @@ textarea::placeholder {
   font-size: 12px;
   line-height: 1.6;
 }
+.wiki-course-section {
+  margin-top: 34px;
+  padding-top: 24px;
+  border-top: 1px solid var(--theme-border, #dfe5d7);
+}
+.wiki-course-section > h3 {
+  margin: 0 0 18px;
+  font-size: 21px;
+  line-height: 1.4;
+}
+.markdown-table-scroll {
+  max-width: 100%;
+  margin: 18px 0 24px;
+  overflow-x: auto;
+  border: 1px solid var(--theme-border, #dfe5d7);
+  border-radius: 8px;
+}
+.markdown-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.markdown-table th,
+.markdown-table td {
+  min-width: 96px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--theme-border, #dfe5d7);
+  text-align: left;
+  vertical-align: top;
+}
+.markdown-table th {
+  background: var(--theme-code, #edf1e8);
+  font-weight: 650;
+}
+.markdown-table tr:last-child td {
+  border-bottom: 0;
+}
 .markdown a {
   color: var(--theme-accent, #426a37);
   text-decoration: underline;

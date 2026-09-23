@@ -1,0 +1,246 @@
+[
+  {
+    "id": "ref-001",
+    "title": "Calculus 1",
+    "sourcePageTitle": "Calculus 1 DSBA 2026/2027",
+    "sourceUrl": "https://wiki.cs.hse.ru/Calculus_1_DSBA_2026/2027?oldid=97611",
+    "sourceRevision": 97611,
+    "sourceUpdatedAt": "2026-09-15T22:36:54Z",
+    "sections": [
+      {
+        "title": "Syllabus",
+        "content": "Full information on the course can be found on the official website of HSE: [https://www.hse.ru/en/ba/data/courses/1163495896.html](https://www.hse.ru/en/ba/data/courses/1163495896.html)"
+      },
+      {
+        "title": "Grading system",
+        "content": "Grade for the 1st semester: Final1 = min{Round(G1), 10}, arithmetic rounding.  /\n\nG1 = 0.2*Mid1+0.2*Colloq1+0.15*Quiz1*(2-Q1)+0.15*HW1*Q1+0.3*Exam1+Bonus1 (no rounding) /\n\n*Mid1 - Written control work (midterm) at the end of the 1st (or at the beginning of the 2nd module). /\n*Colloq1 - Colloquium on theoretical part of the course at the beginning of December.\n*Quiz1 - Average grade of 70% of the best quizzes. Quizzes are held regularly in classes and based on previous homeworks. Quizzes can also include theoretical questions and definitionds from the previous lectures.\n*Q1 = Quiz1/10 ∈ [0, 1], characterizing the quality of doing quizzes.\n*Exam1 - Written exam at the end of the 2nd module\n*Bonus1 ∈ [0, 1] - the ratio of bonus points held in the 1st semester.\n\nGrade for the 2nd semester = final course grade: Round(0.4*G1 + 0.6*G2), arithmetic rounding. /\n\nG2 = 0.2*Mid2+0.2*Colloq2+0.15*Quiz2*(2-Q2)+0.15*HW2*Q1+0.3*Exam2+Bonus2 (no rounding) /\n\nDuration of the exams is 120 minutes. /\nIf plagiarism is detected, the assessment element will be assigned a score of \"0\". If the student is suspected of preparing the task not on his own, the teacher or the assistant has the right to initiate additional verification or defense of this particular assessment element. Then such an assessment element will be graded based on the additional verification or the defense."
+      }
+    ]
+  },
+  {
+    "id": "ref-003",
+    "title": "English Language",
+    "sourcePageTitle": "English DSBA 2026/2027",
+    "sourceUrl": "https://wiki.cs.hse.ru/English_DSBA_2026/2027?oldid=97241",
+    "sourceRevision": 97241,
+    "sourceUpdatedAt": "2026-09-06T15:26:05Z",
+    "sections": [
+      {
+        "title": "Syllabus",
+        "content": "The syllabus is available on the [link](https://disk.yandex.ru/i/Jn5e3ncUPx3Olg)."
+      },
+      {
+        "title": "Grading System",
+        "content": "==== 1 semester ====\n\nG_1 = 0.6 * G_Cumulative + 0.4 * G_Exam\n\nG_Cumulative = 0.4 * G_Attendance&Classwork + 0.3 * G_Homework + 0.3 * G_Tests\n\n==== 2 semester ====\n\nG_2 = 0.6 * G_Cumulative + 0.4 * G_Exam\n\nG_Cumulative = 0.4 * G_Attendance&Classwork + 0.3 * G_Homework + 0.3 * G_Tests\n\n==== Final Grade ====\n\nG_Final = (G_1 + G_2) / 2\n\n==== Rounding Rules ====\n\nThe following rounding rules are applied: grades from 1 to 7 are not rounded up, i.e. 4=4, 5=5, 6=6, 7=7. For grades from 7 to 10, the arithmetic rounding rule is applied, i.e. 0.1-0.4 is rounded down and 0.5 and higher is rounded up, e.g. 7.5=8.\n\nThe arithmetic rounding rule is applied to the overall exam grade in module 4 with the grades rounded up or down to the nearest band and half-band score, i.e. 0.1-0.24 is rounded down to 0, 0.25-0.49 is rounded up to 0.5, 0.5-0.74 is rounded down to 0.5, 0.75-0.9 is rounded up to 1.\n\nThe arithmetic rounding rule is applied to the final grade, i.e. 0.1-0.4 is rounded down and 0.5 and higher is rounded up.\n\n==== Plagarism and Penalties ====\n\nIf plagiarism or AI is detected, the assessment element is assigned a score of “0”. If the student is suspected of preparing the task not on their own or using AI, the teacher has the right to initiate additional verification or defence of this particular assessment element. Such an assessment element is graded based on the additional verification or the defence. If the student manages to achieve a satisfactory defence on the suspicion, they should then be given the mark they achieved."
+      }
+    ]
+  },
+  {
+    "id": "ref-004",
+    "title": "Linear Algebra and Geometry",
+    "sourcePageTitle": "LAaG DSBA 2026/2027",
+    "sourceUrl": "https://wiki.cs.hse.ru/LAaG_DSBA_2026/2027?oldid=97769",
+    "sourceRevision": 97769,
+    "sourceUpdatedAt": "2026-09-22T18:23:10Z",
+    "sections": [
+      {
+        "title": "Teachers and Assistants",
+        "content": "| Group | 261 (M+P+) | 262 (P+) | 263 (M+) | 264 | 265 | 266 | 267 |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n| Lecturer | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083) | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083) | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083) | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083) | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083) | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083) | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083) |\n| Teacher | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083) | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083) | Сергей Смирнов ([tg](https://t.me/ssmirnov1977)) | [Василий Гончаренко](https://www.hse.ru/org/persons/190260375/) | [Дарья Башминова](https://www.hse.ru/org/persons/305059337) ([tg](https://t.me/EndorFlame)) | [Дарья Башминова](https://www.hse.ru/org/persons/305059337) ([tg](https://t.me/EndorFlame)) | Сергей Смирнов ([tg](https://t.me/ssmirnov1977)) |\n| Consultations | by agreement via Zoom / One must notify me beforehand | by agreement via Zoom / One must notify me beforehand | by agreement via Zoom | by agreement | by agreement / One must notify me beforehand via telegram | by agreement / One must notify me beforehand via telegram | \\| by agreement via Zoom |\n| Assistant | Мельничук&nbsp;Мирослава / Коковин Алексей | Иванова Анастасия / Серветник София | Радаева Ангелина / Саломадина Полина | Бальцер Злата / Кадурина Елизавета | Карпухин Симеон / Острейкова Софья | Истомина Любовь / Маризин Семён | Зяблюк Сергей / Алексеенко Андрей |"
+      },
+      {
+        "title": "Grading system",
+        "content": "During the academic year, the student will be formally graded on the following:\n*two in-class oral tests (O1 and O2);\n*two in-class written tests (W1 and W2);\n*several quizzes (Q1 and Q2, where Qi is the average grade of all the quizzes in the i-th semester);\n*several homework assignments (H1 and H2, where Hi is the average grade of all the homework assignments in the i-th semester);\n*two written exams (E1 and E2).\n\nAll grades (namely, O1, O2, W1, W2, Q1, Q2, H1, H2, E1, and E2) are real numbers from 0 to 10.\n\nThe cumulative course grade for the first semester, C1, is obtained without rounding by the following formula:\n\nC1 = 5/16*O1 + 4/16*W1 + 4/16*Q1 + 3/16*H1.\n\nThe intermediate course grade for the first semester, I1, is obtained by the following formula:\n\nI1 = Round1(3/10*E1 + 7/10*C1),\n\nwhere the function Round1(x) is defined as follows: if the decimal part of x is less than 0.2, the grade is rounded downwards; if the decimal part of x is greater than 0.7, the grade is rounded upwards; if the decimal part of x is from the interval [0.2;0.7] and the student's seminar attendance during the first semester is not below 66%, the grade is rounded upwards; otherwise the grade is rounded downwards.\n\nThe cumulative course grade for the second semester, C2, is obtained without rounding by the following formula:\n\nC2 = 5/16*O2 + 4/16*W2 + 4/16*Q2 + 3/16*H2.\n\nThe intermediate course grade for the second semester, I2, is obtained by the following formula:\n\nI2 = Round2(3/10*E2 + 7/10*C2),\n\nwhere the function Round2(x) is defined as Round1(x) but with \"during the first semester\" replaced by \"during the second semester\".\n\nThe final grade for the course, F, is obtained by the following formula:\n\nF = Round(1/4*I1 + 3/4*I2),\n\nwhere the function Round(x) is defined as Round1(x) but with \"during the first semester\" replaced by \"during the academic year\".\n\nThe final grade for the course is included in a diploma supplement."
+      },
+      {
+        "title": "Lecture Notes",
+        "content": "Module 1\n- [Lecture 4](https://www.dropbox.com/s/lqwfw0ytlpn2o1j/LAaG_Lecture_4.pdf?dl=0) (23.09.2026) Systems of linear equations (SoLE); homogeneous, inhomogeneous, consistent, and inconsistent SoLE; the matrix form of a SoLE; leading and free variables; the augmented matrix of a SoLE; a general algorithm for solving SoLE.\n- [Lecture 3](https://www.dropbox.com/s/h0p48gpr8cfaywf/LAaG_Lecture_3.pdf?dl=0) (16.09.2026) Elementary row matrix operations; elementary matrices; elementary row operations as matrix pre-multiplication; reduced row echelon form; Gaussian elimination.\n- [Lecture 2](https://www.dropbox.com/s/hp9hrjorgv3ez3o/LAaG_Lecture_2.pdf?dl=0) (09.09.2026) Matrix transposition; symmetric and skew-symetric matrices; inverse of a matrix; invertible (=non-singular) matrices; the trace of a matrix; main properties of the matrix transposition; the trace.\n- [Lecture 1](https://www.dropbox.com/s/xbzr7b3upj63rhy/LAaG_Lecture_1.pdf?dl=0) (02.09.2026) Matrices, main definitions; special matrices (square matrices, triangular matrices, identity matrices, zero matrices); matrix scalar multiplication; matrix addition; matrix multiplication; main properties of these operations."
+      },
+      {
+        "title": "Homework",
+        "content": "Semester 1\n\n| 261 | 262 | 263 | 264 | 265 | 266 | 267 |\n| --- | --- | --- | --- | --- | --- | --- |\n| [HW_1](https://www.dropbox.com/scl/fi/qauq91l2fanux71nk2etz/LAaG_HW_1_g261.pdf?rlkey=hnnzbzru9xk55fz9ia7n3a1zd&st=7k7om4im&dl=0) (09.09.26) / [Seminar_1 Notes](https://www.dropbox.com/scl/fi/rbiwkvrp0wv5pwg5tw5bx/LAaG_Seminar_1.pdf?rlkey=mpmvtgqre17cvep0u7q4ipw58&dl=0) | [HW_1](https://www.dropbox.com/scl/fi/nx5w9qakmi8sdwqgy2ag3/LAaG_HW_1_g262.pdf?rlkey=yvwctnwp0f2c387fjbhfr8bqj&st=xdrrruth&dl=0) (16.09.26) / [Seminar_1 Notes](https://www.dropbox.com/scl/fi/rbiwkvrp0wv5pwg5tw5bx/LAaG_Seminar_1.pdf?rlkey=mpmvtgqre17cvep0u7q4ipw58&dl=0) | HW_1 (not linked in source) (??.09.26) | HW_1 (not linked in source) (??.09.26) | HW_1 (not linked in source) (??.09.26) | HW_1 (not linked in source) (17.09.26) | HW_1 (not linked in source) (??.09.26) |\n| [HW_2](https://www.dropbox.com/scl/fi/zclem2tp8u7fzt14t20aq/LAaG_HW_2_g261.pdf?rlkey=facta8dvk96ikwik8k23672jd&st=vvartzq5&dl=0) (16.09.26) / [Seminar_2 Notes](https://www.dropbox.com/scl/fi/0pjnumqwkvq1hm3l9bv9n/LAaG_Sem_2.pdf?rlkey=009giak7xgqr3i33o8udtoc8a&st=drivxf0a&dl=0) | [HW_2](https://www.dropbox.com/scl/fi/mihml59m5hhjf4f10gs1z/LAaG_HW_2_g262.pdf?rlkey=d6p33mgqcw1rdng0bnnbxnq0s&st=fraxtfpy&dl=0) (23.09.26) / [Seminar_2 Notes](https://www.dropbox.com/scl/fi/0pjnumqwkvq1hm3l9bv9n/LAaG_Sem_2.pdf?rlkey=009giak7xgqr3i33o8udtoc8a&st=drivxf0a&dl=0) | HW_2 (not linked in source) (??.??.26) | HW_2 (not linked in source) | HW_2 (not linked in source) | HW_2 (not linked in source) (??.??.26) | HW_2 (not linked in source) (??.??.26) |\n| [HW_3](https://www.dropbox.com/scl/fi/9ao3kj8xjbdz3xh9m4gbq/LAaG_HW_3_g261.pdf?rlkey=a95xq0jperd2rvt1ncngwzuwi&st=m2qgwabf&dl=0) (23.09.26) / [Seminar_3 Notes](https://www.dropbox.com/scl/fi/01ii8a8wyg1da5tk7jyel/LAaG_Seminar_3.pdf?rlkey=lvu0ae3e4n1aqv6yn4k7np472&dl=0) | [HW_3](https://www.dropbox.com/scl/fi/bmoeqebx3oxj30yqfd7ci/LAaG_HW_3_g262.pdf?rlkey=3wivwimcovfc75nz9zpyk5cpb&st=vucagkps&dl=0) (30.09.26) / [Seminar_3 Notes](https://www.dropbox.com/scl/fi/01ii8a8wyg1da5tk7jyel/LAaG_Seminar_3.pdf?rlkey=lvu0ae3e4n1aqv6yn4k7np472&dl=0) | [HW_3](https://www.dropbox.com/scl/fi/7vmraa7oe0ajfmno81vqk/LAaG_HW_3_g263.pdf?rlkey=pkz2wmmgjdexd7r94usjs0xk1&st=ar5qxulj&dl=0) (24.09.26) | HW_3 (not linked in source) | HW_3 (not linked in source) | HW_3 (not linked in source) | [HW_3](https://www.dropbox.com/scl/fi/rgqeqmzgre3bv7soitn9y/LAaG_HW_3_g267.pdf?rlkey=hbdwlmn4gqqmirxpq9hks42bw&st=ern2lj19&dl=0) (24.09.26) |\n| [HW_4](https://www.dropbox.com/scl/fi/nafgtscv4qu4en4rvle7j/LAaG_HW_4_g261.pdf?rlkey=s6h61x3pev3uhkoxcy53ywx3c&st=7x5qk556&dl=0) (30.09.26) / [Seminar_4 Notes](https://www.dropbox.com/scl/fi/bqwokbvzxygpkgjpmg6a3/LAaG_Seminar_4.pdf?rlkey=098u7702pnmdy9wpx9cmuexdk&dl=0) | HW_4 (not linked in source) (07.10.26) / [Seminar_4 Notes](https://www.dropbox.com/scl/fi/bqwokbvzxygpkgjpmg6a3/LAaG_Seminar_4.pdf?rlkey=098u7702pnmdy9wpx9cmuexdk&dl=0) | HW_4 (not linked in source) (??.??.26) | HW_4 (not linked in source) | HW_4 (not linked in source) | HW_4 (not linked in source) | HW_4 (not linked in source) (??.??.26) |"
+      }
+    ]
+  },
+  {
+    "id": "ref-005",
+    "title": "Discrete Mathematics 1",
+    "sourcePageTitle": "Discrete Mathematics 1 DSBA 2026/2027",
+    "sourceUrl": "https://wiki.cs.hse.ru/Discrete_Mathematics_1_DSBA_2026/2027?oldid=97771",
+    "sourceRevision": 97771,
+    "sourceUpdatedAt": "2026-09-22T19:35:18Z",
+    "sections": [
+      {
+        "title": "Homework",
+        "content": "The homework includes a few problem sets, one in a fortnight or so (the deadlines are announced on giving each set). Every problem set consists of about 10 – 15 problems. These  sets may be subdivided further for students’ convenience.\n\nWe expect you to try solving every homework problem. Nevertheless, in Modules 2 and 3 we are going to grade the solutions of about one quarter of all problems. The problems chosen to be graded will be the same for all students and our choice will be revealed past the deadline for each respective problem set.\n\nStill, we suggest you try solving every homework problem. In particular, some of these problems will be given as special 'homework tests' to be held in class. The tests are scheduled to Modules 2 and 3 late weeks.\n\nA student may be required to 'defend' (i.e., to explain orally) his written solution to any problem. His grade for the problem may be decreased if he fails to do so properly."
+      },
+      {
+        "title": "Lecture notes",
+        "content": "[Original English version](https://drive.google.com/file/d/1mmNLLQ0--EDihGNRKwSyXLOA1KL7A0lD/view?usp=sharing)\n\n[A Russian translation by volunteering students](https://drive.google.com/drive/folders/1cTCdJtVVtO9uDgIKE8HY0qhl285tzOo1?usp=drive_link) (you are welcome to [join](https://t.me/sigma_algebraa) their ranks)"
+      },
+      {
+        "title": "Homework",
+        "content": "The homework is graded in three batches: one (HW_A) includes everything to be submitted in Module1, another (HW_B) includes all the problems submitted in other modules that we will choose to be graded (see Homework section for an explanation). The last batch (HW_Test_B) consists of two in-class tests; each test takes about 80 minutes and contains 6 -- 8 problems from the homework problem sets or very similar to those. For each problem, the student is given a score from 0 to 1 point (in fractional values) according to the progress he made.\n\nThe homework graded are computed the following way (before rounding):\n\nHW_A =  10 * (the sum of points given for the problems) / #(problems);\n*all the problems are to be graded*.\n\nGrade HW_B is computed similarly but for its respective period of Modules 2 and 3:\n\nHW_B = 10 * (the sum of points given for the problems) / #(problems subject to be graded);\n*a few chosen problems are to be graded*.\n\nHW_Test_B = 10 * (the sum of points given for the problems in both the tests) / #(problems in both the tests)."
+      }
+    ]
+  },
+  {
+    "id": "ref-015",
+    "title": "Calculus 2",
+    "sourcePageTitle": "Calculus 2 DSBA 2026/2027",
+    "sourceUrl": "https://wiki.cs.hse.ru/Calculus_2_DSBA_2026/2027?oldid=97707",
+    "sourceRevision": 97707,
+    "sourceUpdatedAt": "2026-09-20T19:55:41Z",
+    "sections": [
+      {
+        "title": "Teachers and Assistants",
+        "content": "| Group | 251 (M+P+) | 252 | 253 | 254 | 255 | 256 |\n| --- | --- | --- | --- | --- | --- | --- |\n| Lecturer | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083/) | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083/) | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083/) | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083/) | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083/) | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083/) |\n| Teacher | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083/) | [Василий Гончаренко](https://www.hse.ru/org/persons/190260375/) | [Андрей Мажуга](https://www.hse.ru/org/persons/224875083/) | [Дмитрий Гайфулин](https://www.hse.ru/org/persons/697229842/) | [Корней Томащук](https://www.hse.ru/org/persons/225584739/) | [Андрей Жижин](https://www.hse.ru/org/persons/305077523/) |\n| Consultations | by agreement via Zoom / One must notify me beforehand | by agreement | by agreement via Zoom / One must notify me beforehand | by agreement | by agreement | by agreement |\n| Assistant | Борис Бабаян | Пётр Греков | Дарья Сбоева | Данила Рязанов | Никита Чариков | Аиша Абтини |\n| Course / Assistant | Полина Гребенникова | Полина Гребенникова | Полина Гребенникова | Полина Гребенникова | Полина Гребенникова | Полина Гребенникова |"
+      },
+      {
+        "title": "Grading system",
+        "content": "During the course, the student will be formally graded on the following:\n*one in-class oral test (O);\n*one in-class written test (= midterm test) (W);\n*several quizzes (Q, where Q is the average grade of all the quizzes in the course);\n*several homework assignments (H, where H is the average grade of all the homework assignments in the course);\n*one written exam (E).\n\nAll grades (namely, O, W, Q, H, and E) are real numbers from 0 to 10.\n\nThe cumulative grade, C, is obtained without rounding by the following formula:\n\nC = 4/17*H + 4/17*Q + 4/17*W + 5/17*O.\n\nThe final grade for the course, F, is obtained by the following formula:\n\nF = Round(7/10*C + 3/10*E).\n\nwhere the function Round(x) is defined as follows: if the decimal part of x is less than 0.2, the grade is rounded downwards; if the decimal part of x is greater than 0.7, the grade is rounded upwards; if the decimal part of x is from the interval [0.2;0.7] and the student's seminar attendance during the first semester is not below 66%, the grade is rounded upwards; otherwise the grade is rounded downwards."
+      },
+      {
+        "title": "Lecture Notes",
+        "content": "If you notice an error or do not understand something, please describe it in the  [Bugs Table.](https://docs.google.com/spreadsheets/d/1MObdMXWccc98bIEJf17jLzd4FcADOXdShz2uVOz1wsY/edit?hl=ru#gid=0)\n\n Module 1\n- [Lecture 3](https://www.dropbox.com/scl/fi/x9srwlnecmcdbklaidlk7/Calculus_2_Lecture_3.pdf?rlkey=7kr1iyzw8ftm8lryralc5y5mn&dl=0) (21.09.2026) The Abel transformation; the Dirichlet test; the Abel test; the Leibniz test; sine and cosine sums; absolutely and conditionally convergent series; alternating p-series; the Cauchy rearrangement theorem; the Riemann rearrangement theorem.\n- [Lecture 2](https://www.dropbox.com/scl/fi/pn5upm5x6khbs7s3a565e/Calculus_2_Lecture_2.pdf?rlkey=am9cqmo0m1mk40gxo00kycumz&dl=0) (14.09.2026) Series with non-negative terms; the Cauchy Condensation test; the first comparison test; the second comparison test; p-series convergence; the integral test; the root test; the ration test; the Kummer test; the Bertrand test; the Gauss test.\n- [Lecture 1](https://www.dropbox.com/scl/fi/4sp8sbruiowo9t1fjpeah/Calculus_2_Lecture_1.pdf?rlkey=9o9pg6ksix7xohp2wn8fhpyts&dl=0) (07.09.2026) Series; convergence and divergence; Cauchy's criterion and its negation; necessary condidion for convergence; the tale (= remainder) of a series; linear combination of series; grouping theorem."
+      },
+      {
+        "title": "Homework",
+        "content": "| 251 | 252 | 253 | 254 | 255 | 256 |\n| --- | --- | --- | --- | --- | --- |\n| [HW_1](https://www.dropbox.com/scl/fi/bf3cbduc4jdtvx9lbwsa8/Calculus_2_HW_1_g251.pdf?rlkey=lqpc2db62gjr020pfy12ys38s&st=kttjy5c5&dl=0) (14.09.26) / [Sem_1](https://www.dropbox.com/scl/fi/71xhdg4o2d1i4focjlpxg/Calculus_2_Sem_1.pdf?rlkey=yua3julsz1g085k449kjeikxz&st=lfhiiexd&dl=0) | HW_1 (not linked in source) | [HW_1](https://www.dropbox.com/scl/fi/ykqlqzvy27xa0jfzbxuls/Calculus_2_HW_1_g253.pdf?rlkey=j4iw9bbczvy5hvzsfzol68nms&st=b9gyqeo8&dl=0) (14.09.26) / [Sem_1](https://www.dropbox.com/scl/fi/71xhdg4o2d1i4focjlpxg/Calculus_2_Sem_1.pdf?rlkey=yua3julsz1g085k449kjeikxz&st=lfhiiexd&dl=0) | HW_1 (not linked in source) | HW_1 (not linked in source) | HW_1 (not linked in source) |\n| [HW_2](https://www.dropbox.com/scl/fi/clwn9w8u9wshhcz2nql5n/Calculus_2_HW_2_g251.pdf?rlkey=9azodc1hevewzpwr0d2a1w2l0&st=gnzwdlkg&dl=0) (21.09.26) / [Sem_2](https://www.dropbox.com/scl/fi/woo21dyrhvhu45w4ycz95/Calculus_2_Sem_2.pdf?rlkey=8kcvzib7ujh0tcgnqg4d7vstr&dl=0) | HW_2 (not linked in source) | [HW_2](https://www.dropbox.com/scl/fi/wfdsohqbn6fbi7d89cqn1/Calculus_2_HW_2_g253.pdf?rlkey=ooagv6h4l8sh3pcmm6w6450es&st=0w97r3no&dl=0) (21.09.26) / [Sem_2](https://www.dropbox.com/scl/fi/woo21dyrhvhu45w4ycz95/Calculus_2_Sem_2.pdf?rlkey=8kcvzib7ujh0tcgnqg4d7vstr&dl=0) | HW_2 (not linked in source) | HW_2 (not linked in source) | HW_2 (not linked in source) |\n| [HW_3](https://www.dropbox.com/scl/fi/9hp9eorv5bmo606j3mxjf/Calculus_2_HW_3_g251.pdf?rlkey=jq8w8mfkvnizaxn583kt9tiya&st=ckdtq7pr&dl=0) (28.09.26) / [Sem_3](https://www.dropbox.com/scl/fi/7e4g0s87d2145vw1dbg13/Calculus_2_Sem_3.pdf?rlkey=2yz5t1op25zocnbrpehgjrmgw&st=j7mfl7q8&dl=0) | HW_3 (not linked in source) | [HW_3](https://www.dropbox.com/scl/fi/qk2ncvdwbf95w4nz2yrx8/Calculus_2_HW_3_g253.pdf?rlkey=oa9b4p0pfmsylozee25z36vvx&st=j6v4q0h9&dl=0) (28.09.26) / [Sem_3](https://www.dropbox.com/scl/fi/7e4g0s87d2145vw1dbg13/Calculus_2_Sem_3.pdf?rlkey=2yz5t1op25zocnbrpehgjrmgw&st=j7mfl7q8&dl=0) | HW_3 (not linked in source) | HW_3 (not linked in source) | HW_3 (not linked in source) |"
+      }
+    ]
+  },
+  {
+    "id": "ref-022",
+    "title": "Business and Management in Global Context",
+    "sourcePageTitle": "Business and Management in Global Context DSBA 2026/2027",
+    "sourceUrl": "https://wiki.cs.hse.ru/Business_and_Management_in_Global_Context_DSBA_2026/2027?oldid=97190",
+    "sourceRevision": 97190,
+    "sourceUpdatedAt": "2026-09-04T22:32:34Z",
+    "sections": [
+      {
+        "title": "Grading system",
+        "content": "Both semesters use the same weights; only the modules the components sit in differ.\n\nGlobal Context 1\n\nSemester 1\n\n|  | Module 2 exam | 0.40 |\n| --- | --- | --- |\n|  | Module 1 midterm test | 0.15 |\n|  | In-class and take-home written assignments, presentations, quizzes *(modules 1–2)* | 0.35 |\n|  | Attendance, class activity &amp; participation in discussions *(modules 1–2)* | 0.10 |\n\nGlobal Context 2\n\nSemester 2\n\n|  | Module 4 exam | 0.40 |\n| --- | --- | --- |\n|  | Module 3 midterm test | 0.15 |\n|  | In-class and take-home written assignments, presentations, quizzes *(modules 3–4)* | 0.35 |\n|  | Attendance, class activity &amp; participation in discussions *(modules 3–4)* | 0.10 |\n\nRetakes are organized in accordance with the HSE Interim and Ongoing Assessment Regulations. Grade determination after retakes is done in accordance with the syllabus. Sample materials for knowledge assessment are available in the syllabus."
+      }
+    ]
+  },
+  {
+    "id": "ref-023",
+    "title": "Introduction to Finance",
+    "sourcePageTitle": "Introduction to Finance DSBA 2026/2027",
+    "sourceUrl": "https://wiki.cs.hse.ru/Introduction_to_Finance_DSBA_2026/2027?oldid=97776",
+    "sourceRevision": 97776,
+    "sourceUpdatedAt": "2026-09-23T08:10:59Z",
+    "sections": [
+      {
+        "title": "Teachers and Assistants",
+        "content": "| Group | 1 | 2 | 3 | 4 |\n| --- | --- | --- | --- | --- |\n| Lecturer in Semester 1 | Irina Kestner | Irina Kestner | Irina Kestner | Irina Kestner |\n| Lecturer in Semester 2 | Alina Myalo | Alina Myalo | Alina Myalo | Alina Myalo |\n| Class teacher | Irina Kestner | Irina Kestner | Yulia Komarova | Yulia Komarova |\n| Consultations | - | - | - |  |\n\n[Telegram space](https://t.me/+aR5zN1UaoLo1MWFi)"
+      },
+      {
+        "title": "Grading system",
+        "content": "During the course, the student will be formally graded on the following:\n*in-class attendance and activity (A);\n*several lecture quizzes (Q, where Q is the average grade of all the quizzes in the course);\n*several homework assignments (H, where H is the average grade of all the homework assignments in the course);\n*one written Fall mid-term test (F)\n*one written Winter exam (W).\n\nAll grades (namely, A, Q, H, F, and W) are real numbers from 0 to 100.\n\nThe cumulative grade, C, is obtained without rounding by the following formula:\n\nC = 0.10*A + 0.05*Q + 0.15*H + 0.25*F + 0.45*W."
+      },
+      {
+        "title": "Lecture Notes",
+        "content": "- [Lecture 0](https://drive.google.com/file/d/1UjzxOocRvB5BQ9lJDmfpJPpg67uKqIGk/view?usp=sharing) (01.09.2026) Intro, Grades, Reading list.\n- [Lecture 1](https://drive.google.com/file/d/1DGFaBb-25WP2nHu0FahE90UeAw0mU-t5/view?usp=sharing) (01.09.2026) Financial system: functions, institutions, markets, securities.\n- [Lecture 2](https://drive.google.com/file/d/1vb8TpvgC8V7qkfrP7TvxNM45wW4K--Yp/view?usp=sharing) (01.09.2026) Time value of money: PV, FV, discounting, perpetuities, annuities.\n- [Lecture 3](https://drive.google.com/file/d/1l1GXNtN8l633mQy28brTxtJzZ48JEUiD/view?usp=sharing) (23.09.2026) Project appraisal techniques."
+      }
+    ]
+  },
+  {
+    "id": "ref-025",
+    "title": "Deep Learning",
+    "sourcePageTitle": "Deep Learning DSBA 2026/2027",
+    "sourceUrl": "https://wiki.cs.hse.ru/Deep_Learning_DSBA_2026/2027?oldid=96961",
+    "sourceRevision": 96961,
+    "sourceUpdatedAt": "2026-08-27T17:43:56Z",
+    "sections": [
+      {
+        "title": "Course Syllabus",
+        "content": "DSBA Deep Learning 2026-2027.\n- DSBA (ПАД ФКН): [Syllabus](https://www.hse.ru/ba/data/courses/1163520628.html)"
+      },
+      {
+        "title": "Teachers and Assistants",
+        "content": "| Role | DSBA 241 | DSBA 242 | DSBA 243 | DSBA 244 | DSBA 245 |\n| --- | --- | --- | --- | --- | --- |\n| Lecturers | [Alexey Boldyrev](https://www.hse.ru/en/org/persons/223985242), [Maksim Karpov](https://www.hse.ru/en/staff/mekarpov), Lecturers' TA [Irina Milova](https://t.me/rina_mlv) | [Alexey Boldyrev](https://www.hse.ru/en/org/persons/223985242), [Maksim Karpov](https://www.hse.ru/en/staff/mekarpov), Lecturers' TA [Irina Milova](https://t.me/rina_mlv) | [Alexey Boldyrev](https://www.hse.ru/en/org/persons/223985242), [Maksim Karpov](https://www.hse.ru/en/staff/mekarpov), Lecturers' TA [Irina Milova](https://t.me/rina_mlv) | [Alexey Boldyrev](https://www.hse.ru/en/org/persons/223985242), [Maksim Karpov](https://www.hse.ru/en/staff/mekarpov), Lecturers' TA [Irina Milova](https://t.me/rina_mlv) | [Alexey Boldyrev](https://www.hse.ru/en/org/persons/223985242), [Maksim Karpov](https://www.hse.ru/en/staff/mekarpov), Lecturers' TA [Irina Milova](https://t.me/rina_mlv) |\n| Seminarists | [Aleksandr Khizhik](https://www.hse.ru/en/staff/akhizhik/) | [Sara Ali](https://www.hse.ru/en/staff/sara) | [Majid Sohrabi](https://www.hse.ru/en/org/persons/401648437) | [Vsevolod Ovchinnikov](https://www.hse.ru/org/persons/510407508/) | [Vsevolod Ovchinnikov](https://www.hse.ru/org/persons/510407508/) |\n| Teaching Assistants | [Artur Karapetyan](https://t.me/chkapox) | [Bogdan Uvarov](https://t.me/lbananamanl) | [Ivan Miniaitsev](https://t.me/taravtaru) | [Polina Doronicheva](https://t.me/d_poIy) | [Kirill Zykov](https://t.me/ksmnx) |"
+      },
+      {
+        "title": "Grading System",
+        "content": "Relevant grading formulas are presented on the official course home page ([DSBA Deep Learning](https://www.hse.ru/ba/data/courses/1163520628.html,)).\n\n  0.15 * Hackathon (Exam) + 0.25 * Kaggle competitions + 0.2 * Home assignments + 0.2 * Midterm Test + 0.2 * Quizzes\n\nWe use [natural grade aggregation](https://docs.moodle.org/311/en/Grade_aggregation) in LMS. Rounding [to the nearest integer](https://en.wikipedia.org/wiki/Rounding#Rounding_to_the_nearest_integer) is used to report 0-10 scale grades to HSE.\n\n=== Homework (HW) Assignment ===\n- HW is released via Moodle/Smart LMS and is also announced in the Telegram Channel.\n- Individual: These are individualized (not in groups!) assignments of two kinds\n- Auto-graded assignments (thanks to STACK plugin with Maxima CAS backend). Some written responses will be selectively hand-graded by TAs.\n- Quick Maxima syntax is provided below and in each assignment.\n- Manual-graded assignments include analysis of datasets, analytical and conceptual problems, and programming assignments.\n- All text explanations must be written in Markdown cells.\n- Graders leave feedback in Smart LMS and execute Jupyter notebook to reproduce your results.\n- Group: Students are self-assigned into groups to compete on Kaggle.com. Teamwork is evaluated by instructors. Team’s grade is awarded to everyone on a team.\n\n=== Midterm Test ===\n- We will have a cumulative in-class midterm test in the middle of the semester.\n- Moodle/Smart LMS based in Safe Exam Browser.\n- Test is individual, i.e. no collaboration. Generative models, web searching, lecture and/or seminar materials, and textbooks are not allowed.\n- Test questions are drawn from quiz bank, not HW. HW deepens your understanding, but a test measures it.\n- There is a free navigation between questions, i.e. you can move back or forward the test questions.\n- Results will be announced after the midterm test within 5 working days.\n\n=== University of London (UoL), Course ST3189 (ML) ===\n\n1. Coursework Project in Python (or R) programming language is for DSBA students and is administered by LSE/UoL. It is released around January and is due around April 1. Although students are given a 3-4 months window, this exercise is meant to be completed in a few days. Typically, students work on it in Feb/Mar. More details on the [UoL site](https://emfss.elearning.london.ac.uk/).\n\n=== ~5 minute Quizzes during seminar in LMS ===\n- Only students present in the classroom during the seminar are allowed to take the quiz. At the beginning of the seminar the seminar assistant will remove absent student(s) from the group list in moodle settings for the current quiz.\n- Quizzes are conducted in Safe Exam Browser.\n- Quizzes are based on lectures, seminars, textbooks, and other material delivered via our course.\n- Quizzes individualized (shuffled and sampled from question banks) for each student. Most questions are auto-generated.\n- All choice questions are [multiple-choice](https://docs.moodle.org/311/en/Multiple_Choice_question_type#Multiple-answer_questions,) (regardless of singular/plural formulation). Incorrect answers lower your score to prevent guessing.\n- Numeric answers are typically accepted with 0.01=1% of error, i.e. round to at least 4 decimal places, if needed. Please do not round any intermediate calculations. It’s best to use as many decimals as fits in the answer box.\n- The quiz answers are released after all groups write the quiz .\n- We always use [natural logarithm](https://en.wikipedia.org/wiki/Natural_logarithm) (inverse of exp()) in this course.\n\n=== Kaggle Competitions and Hackathon ===\n- The assignment is conducted in the form of a kaggle competition in teams of 1-3 students.\n- Leader Board (LB) position below or equal baseline (BL) results in 0 points in LB category.\n- Above baseline is split into 4 quartiles: 1Q (top 25%), 2Q (top 50%), 3Q (top 75%), 4Q (bottom 25%).\n\n=== Deadline Extensions and Makeup ===\n- Only valid verifiable excuses are accepted for 1-2 day extensions of Home assignments.\n- Submit your doctor's note via student services/study office.\n- If you miss a deadline (with a valid/verifiable excuse), contact instructors ASAP to arrange a new deadline.\n- Submissions are not allowed after the solutions have been released.\n- Any test/exam retakes will be rescheduled as per university policy (see also dedicated rubric)\n- Note: accommodating exceptions is difficult and time consuming. Typically, a verifiable medical emergency is a valid reason, but travel and conferences are not. It is the student's responsibility to start their work early, so as to hedge against any unforeseeable life event."
+      }
+    ]
+  },
+  {
+    "id": "ref-026",
+    "title": "Optimization Methods",
+    "sourcePageTitle": "Optimization Methods DSBA 2026/2027",
+    "sourceUrl": "https://wiki.cs.hse.ru/Optimization_Methods_DSBA_2026/2027?oldid=97698",
+    "sourceRevision": 97698,
+    "sourceUpdatedAt": "2026-09-19T16:25:50Z",
+    "sections": [
+      {
+        "title": "Syllabus",
+        "content": "Full information on the course can be found on the official website of HSE: [https://www.hse.ru/ba/data/courses/1163520471.html](https://www.hse.ru/ba/data/courses/1163520471.html)"
+      },
+      {
+        "title": "Grading system",
+        "content": "𝑂total = 0.6*𝑂sem + 0.4 * 𝑂exam\n\n𝑂sem = 0.28*𝑂colloquium + &sum;i=14 0.18 * 𝑂hwi"
+      }
+    ]
+  },
+  {
+    "id": "ref-027",
+    "title": "Stochastic processes and applications",
+    "sourcePageTitle": "Stochastic processes and applications DSBA 2026/2027",
+    "sourceUrl": "https://wiki.cs.hse.ru/Stochastic_processes_and_applications_DSBA_2026/2027?oldid=97684",
+    "sourceRevision": 97684,
+    "sourceUpdatedAt": "2026-09-18T20:17:50Z",
+    "sections": [
+      {
+        "title": "Teachers and assistants",
+        "content": "Teachers:\n[Пётр Лукьянченко](https://t.me/PetrLukianchenko)\n[Мария Кириллова](https://t.me/makirill)\n[Алёна Числова](https://t.me/Alyona_Chislova)\n\nAssistants:\n\n| Name | Responsibilities / groups |\n| --- | --- |\n| [Иван Новосад](https://t.me/Mellodizzz) | Lecturer's assistant |\n| [Ева Каримова](https://t.me/ekaesha) | Groups 243, 245 |\n| [Аскар Биктибаев](https://t.me/askbkt) | Group 244 |\n| [Ольга Макогонова](https://t.me/komfajx) | Groups 241, 242 |"
+      }
+    ]
+  },
+  {
+    "id": "ref-049",
+    "title": "Asset Pricing and Financial Markets",
+    "sourcePageTitle": "Asset Pricing and Financial Markets DSBA 2026/2027",
+    "sourceUrl": "https://wiki.cs.hse.ru/Asset_Pricing_and_Financial_Markets_DSBA_2026/2027?oldid=97509",
+    "sourceRevision": 97509,
+    "sourceUpdatedAt": "2026-09-11T18:26:41Z",
+    "sections": [
+      {
+        "title": "Course Syllabus",
+        "content": "[DSBA Asset Pricing and Financial Markets 2026/2027 Syllabus](https://www.hse.ru/en/ba/data/courses/1163533894.html)"
+      },
+      {
+        "title": "Teachers and Assistants",
+        "content": "| + |  |  |\n| --- | --- | --- |\n| Lecturer | Seminarist | Teaching Assistant |\n| [Runjie (Roger) Geng](https://www.hse.ru/org/persons/396495997) | [Denis Trusov](https://www.hse.ru/org/persons/101552717/) | [Ekaterina Nesteruk](https://t.me/kat1e) |"
+      },
+      {
+        "title": "Grading System",
+        "content": "=== Assessment Elements ===\n- Semester 1 HA\n- Semester 2 HA\n- Autumn Midterm\n- Winter Midterm\n- Final Exam\n=== Interim Assessment ===\n- 2026/2027 2nd module\n\n| + |\n| --- |\n| 0.61 * Winter Exam + 0.29 * Autumn Midterm + 0.1 * Semester 1 HA |\n- 2026/2027 3rd module\n\n| + |\n| --- |\n| Final grade = 0.05*Semester 1 HA + 0.05*Semester 2 HA + 0.15*Autumn Midterm + 0.2*Winter Exam + 0.55*Final Exam |\n\nThe Final Exam at the end of the third module is a blocking exam (minimum score: 15/100)."
+      }
+    ]
+  },
+  {
+    "id": "ref-056",
+    "title": "Natural Language Processing",
+    "sourcePageTitle": "Natural Language Processing DSBA 2026/2027",
+    "sourceUrl": "https://wiki.cs.hse.ru/Natural_Language_Processing_DSBA_2026/2027?oldid=97129",
+    "sourceRevision": 97129,
+    "sourceUpdatedAt": "2026-09-03T08:14:11Z",
+    "sections": [
+      {
+        "title": "Course Syllabus",
+        "content": "DSBA Natural Language Processing 2026.\n- DSBA (ПАД ФКН): [Syllabus](https://www.hse.ru/ba/data/courses/1163570047.html)"
+      },
+      {
+        "title": "Teachers and Assistants",
+        "content": "| Role | Group 1 | Group 2 |  |\n| --- | --- | --- | --- |\n| Lecturer | [Gleb Kuzmin](https://t.me/glkuzi) | [Gleb Kuzmin](https://t.me/glkuzi) | [Gleb Kuzmin](https://t.me/glkuzi) |\n| Seminarists | [Fedor Pakhurov](https://t.me/fpakhurov) | [Daria Andreeva](https://t.me/xufana) |  |"
+      },
+      {
+        "title": "Grading System",
+        "content": "Relevant grading formulas are presented on the official course home page ([DSBA Natural Language Processing](https://www.hse.ru/ba/data/courses/1163570047.html,)).\n\n  0.4 * Exam + 0.2 * Сolloq + 0.4 * Project\n\n=== Project Assignment ===\n\nTBA\n\n=== Midterm Colloq ===\n\nTBA\n\n=== Exam ===\n\nTBA"
+      }
+    ]
+  }
+]

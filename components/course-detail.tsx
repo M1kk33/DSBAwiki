@@ -13,6 +13,7 @@ import { moduleLabel, kinds, seedCourses } from "@/lib/catalog";
 import { Markdown } from "./markdown";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import courseDescriptions from "@/content/course-descriptions.json";
+import courseWikiSections from "@/content/course-wiki-sections.json";
 export function CourseDetail({ id }: { id: string }) {
   const { t, locale, errorText } = useI18n();
   const [page, setPage] = useState(1);
@@ -40,11 +41,15 @@ export function CourseDetail({ id }: { id: string }) {
   const resources = data.resources.filter((r) => r.course_id === id);
   const original = seedCourses.find((item) => item.id === c.id);
   const importedDescription = courseDescriptions.find((item) => item.id === c.id);
+  const wikiPage = courseWikiSections.find((item) => item.id === c.id);
   const descriptionIsPlaceholder =
-    (c.id === "ref-001" || c.id === "ref-026") &&
-    c.description.includes("Full information on the course can be found") ||
-    c.id === "ref-015" &&
-    c.description.includes("This page contains basic information for the course Calculus-2");
+    ((c.id === "ref-001" || c.id === "ref-026") &&
+      c.description.includes("Full information on the course can be found")) ||
+    (c.id === "ref-015" &&
+      c.description.includes("This page contains basic information for the course Calculus-2"));
+  const courseDescription = descriptionIsPlaceholder && importedDescription
+    ? importedDescription.description
+    : c.description;
   return (
     <>
       <Breadcrumbs
@@ -127,20 +132,24 @@ export function CourseDetail({ id }: { id: string }) {
             <TabsContent value="about">
               <div className="prose-card">
                 <h2>{t("О дисциплине")}</h2>
-                <Markdown
-                  text={
-                    descriptionIsPlaceholder && importedDescription
-                      ? importedDescription.description
-                      : c.description ||
-                    (original
-                      ? t(
-                          "Описание ещё не добавлено. Исходная запись дисциплины взята из каталога Wiki ФКН; администратор может уточнять её данные.",
-                        )
-                      : t(
-                          "Описание ещё не добавлено. Курс создан администратором проекта.",
-                        ))
-                  }
-                />
+                {courseDescription ? <Markdown text={courseDescription} /> : !wikiPage && (
+                  <Markdown
+                    text={original
+                      ? t("Описание ещё не добавлено. Исходная запись дисциплины взята из каталога Wiki ФКН; администратор может уточнять её данные.")
+                      : t("Описание ещё не добавлено. Курс создан администратором проекта.")}
+                  />
+                )}
+                {wikiPage?.sections.map((section) => (
+                  <section className="wiki-course-section" key={section.title}>
+                    <h3>{section.title}</h3>
+                    <Markdown text={section.content} />
+                  </section>
+                ))}
+                {wikiPage && (
+                  <small className="markdown-attribution">
+                    Source: <a href={wikiPage.sourceUrl} target="_blank" rel="noopener noreferrer">FCS Wiki — {wikiPage.sourcePageTitle}, revision {wikiPage.sourceRevision}</a>; adapted under the Wiki’s <a href="https://wiki.cs.hse.ru/Wiki_-_%D0%A4%D0%B0%D0%BA%D1%83%D0%BB%D1%8C%D1%82%D0%B5%D1%82_%D0%BA%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D1%8B%D1%85_%D0%BD%D0%B0%D1%83%D0%BA:%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5" target="_blank" rel="noopener noreferrer">CC-BY-SA terms</a>. Linked files remain with their original providers.
+                  </small>
+                )}
               </div>
             </TabsContent>
           </Tabs>
