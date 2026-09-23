@@ -1152,8 +1152,6 @@ textarea::placeholder {
   border-bottom: 1px solid var(--border);
   border-radius: 0;
   background: transparent;
-  overflow-x: auto;
-  scrollbar-width: thin;
 }
 .content-tabs .content-tab {
   flex: 0 0 auto;
@@ -1177,7 +1175,7 @@ textarea::placeholder {
   font-weight: 650;
 }
 .content-tabs .content-tab::after {
-  bottom: -1px;
+  bottom: 0;
   height: 2px;
   background: var(--primary);
 }
@@ -1839,10 +1837,13 @@ textarea::placeholder {
     display: block;
   }
   .content-tabs {
-    width: 100%;
-  }
-  .content-tabs {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
     gap: 22px;
+  }
+  .content-tabs::-webkit-scrollbar {
+    display: none;
   }
   .content-tabs .content-tab {
     font-size: 14px;
