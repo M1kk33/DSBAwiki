@@ -36,8 +36,8 @@ export function Markdown({ text }: { text: string }) {
         index--;
         rendered.push(
           <div className="markdown-table-scroll" key={`${keyPrefix}-table-${index}`}>
-            <table className="markdown-table">
-              <thead><tr>{header.map((cell, cellIndex) => <th key={cellIndex}>{inline(cell)}</th>)}</tr></thead>
+            <table className="markdown-table" style={{ minWidth: `${130 + (header.length - 1) * 132}px` }}>
+              <thead><tr>{header.map((cell, cellIndex) => <th key={cellIndex} scope="col">{inline(cell)}</th>)}</tr></thead>
               <tbody>{rows.map((row, rowIndex) => <tr key={rowIndex}>{header.map((_, cellIndex) => <td key={cellIndex}>{inline(row[cellIndex] || "")}</td>)}</tr>)}</tbody>
             </table>
           </div>,

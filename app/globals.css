@@ -1343,16 +1343,21 @@ textarea::placeholder {
 .markdown-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
   font-size: 14px;
   line-height: 1.55;
 }
+.markdown-table th:first-child {
+  width: 130px;
+}
 .markdown-table th,
 .markdown-table td {
-  min-width: 96px;
+  min-width: 0;
   padding: 10px 12px;
   border-bottom: 1px solid var(--theme-border, #dfe5d7);
   text-align: left;
   vertical-align: top;
+  overflow-wrap: anywhere;
 }
 .markdown-table th {
   background: var(--theme-code, #edf1e8);
