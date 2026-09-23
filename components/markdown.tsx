@@ -41,6 +41,12 @@ export function Markdown({ text }: { text: string }) {
                     • {inline(line.slice(2))}
                   </p>
                 );
+              if (line.startsWith("Source: "))
+                return (
+                  <small className="markdown-attribution" key={j}>
+                    {inline(line)}
+                  </small>
+                );
               if (line.startsWith("> "))
                 return <blockquote key={j}>{inline(line.slice(2))}</blockquote>;
               return line ? <p key={j}>{inline(line)}</p> : <br key={j} />;

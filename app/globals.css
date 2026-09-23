@@ -1314,6 +1314,15 @@ textarea::placeholder {
 .markdown p {
   margin: 7px 0;
 }
+.markdown-attribution {
+  display: block;
+  margin-top: 24px;
+  padding-top: 12px;
+  border-top: 1px solid var(--theme-border, #dfe5d7);
+  color: var(--theme-muted, #7c8970);
+  font-size: 12px;
+  line-height: 1.6;
+}
 .markdown a {
   color: var(--theme-accent, #426a37);
   text-decoration: underline;

@@ -57,14 +57,17 @@ export async function initializeCatalog() {
     .prepare("SELECT value FROM settings WHERE key = ?")
     .bind("wiki_course_descriptions_imported")
     .first();
-  if (descriptionsImported) return;
+  if (descriptionsImported?.value === "course-summaries-v2") return;
 
   const importedAt = new Date().toISOString();
+  const refreshedDescriptions = wikiCourseDescriptions.filter((course) =>
+    ["ref-001", "ref-015", "ref-026"].includes(course.id),
+  );
   await db.batch([
-    ...wikiCourseDescriptions.map((course) =>
+    ...refreshedDescriptions.map((course) =>
       db
         .prepare(
-          "UPDATE courses SET description=?,updated_at=? WHERE id=? AND title=? AND source_url=? AND description=''",
+          "UPDATE courses SET description=?,updated_at=? WHERE id=? AND title=? AND source_url=? AND (description LIKE '%Full information on the course can be found on the official website of HSE%' OR description LIKE '%This page contains basic information for the course Calculus-2%')",
         )
         .bind(
           course.description,
@@ -75,8 +78,8 @@ export async function initializeCatalog() {
         ),
     ),
     db
-      .prepare("INSERT OR IGNORE INTO settings (key,value) VALUES (?,?)")
-      .bind("wiki_course_descriptions_imported", "source-revision-2026-09"),
+      .prepare("INSERT INTO settings (key,value) VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value")
+      .bind("wiki_course_descriptions_imported", "course-summaries-v2"),
   ]);
 }
 export async function getCourses() {

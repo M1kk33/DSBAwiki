@@ -143,8 +143,6 @@ function toMarkdown(wikitext) {
 const byTitle = new Map(
   payload.query.pages.map((page) => [page.title.replaceAll("_", " "), page]),
 );
-const licenseUrl =
-  "https://wiki.cs.hse.ru/Wiki_-_%D0%A4%D0%B0%D0%BA%D1%83%D0%BB%D1%8C%D1%82%D0%B5%D1%82_%D0%BA%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D1%8B%D1%85_%D0%BD%D0%B0%D1%83%D0%BA:%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5";
 const imported = [];
 const skipped = [];
 
@@ -179,7 +177,7 @@ for (const course of courses) {
   const sourceUrl = `${course.sourceUrl}${course.sourceUrl.includes("?") ? "&" : "?"}oldid=${revision.revid}`;
   const descriptionMarkdown = [
     ...selected.map(({ title, content }) => `### ${title}\n\n${content}`),
-    `Source: [Wiki FCS — ${course.sourcePageTitle}](${sourceUrl}), revision ${revision.revid}; formatting adapted. The source Wiki states that its content may be reproduced under [CC BY-SA terms](${licenseUrl}); this excerpt is shared under the same terms.`,
+    `Source: [Wiki FCS — ${course.sourcePageTitle}](${sourceUrl}) · [CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/).`,
   ].join("\n\n");
   imported.push({
     id: course.id,
@@ -191,6 +189,58 @@ for (const course of courses) {
     sourceUpdatedAt: revision.timestamp,
     description: descriptionMarkdown,
   });
+}
+
+const curatedSummaries = new Map([
+  [
+    "ref-001",
+    `### Course description
+
+This first-year course builds the mathematical foundations used throughout the DSBA programme. It covers single-variable and multivariable calculus, including limits, derivatives, integration, and elementary optimization.
+
+### Topics
+
+- Sequences, limits, and continuity
+- Derivatives and integrals of single-variable functions
+- Functions of several variables and partial derivatives
+- Basic optimization problems
+
+Source: [Official HSE DSBA course page](https://www.hse.ru/en/ba/data/courses/1163495896.html). Summary adapted from the published abstract and course contents.`,
+  ],
+  [
+    "ref-015",
+    `### Course description
+
+Calculus 2 develops advanced calculus through infinite sequences and series, functional series, infinite products, Euler integrals, and multiple integrals. It also explores how power series and generating functions can be used to solve problems in discrete mathematics. The course assumes familiarity with basic calculus, including limits, derivatives, and integrals.
+
+### Topics
+
+- Numerical and functional series, including convergence
+- Infinite products and Euler integrals
+- Multiple integrals
+- Power series and generating functions
+
+Source: [Official HSE DSBA course page](https://www.hse.ru/ba/data/courses/1163496071.html). Summary adapted from the published abstract. The original [FCS Wiki course page](https://wiki.cs.hse.ru/Calculus_2_DSBA_2026/2027?oldid=97707) contains the course materials.`,
+  ],
+  [
+    "ref-026",
+    `### Course description
+
+This course introduces mathematical optimization through data-driven modeling, theory, and numerical algorithms. Students study how to formulate optimization problems and choose methods to solve them, from gradient-based and Newton methods to convex and combinatorial optimization. Linear algebra and calculus are prerequisites.
+
+### Topics
+
+- Unconstrained and constrained optimization
+- Optimality conditions and Lagrange multipliers
+- First- and second-order numerical methods
+- Convex, linear, and combinatorial optimization
+
+Source: [Official HSE DSBA course page](https://www.hse.ru/ba/data/courses/1163520471.html). Summary adapted from the published abstract and course contents.`,
+  ],
+]);
+for (const item of imported) {
+  const summary = curatedSummaries.get(item.id);
+  if (summary) item.description = summary;
 }
 
 await writeFile(
