@@ -1515,12 +1515,42 @@ textarea::placeholder {
     color-mix(in srgb, var(--theme-accent, #729257) 18%, transparent);
 }
 .upload-field label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 16px;
   font-size: 15px;
   font-weight: 600;
+  color: var(--theme-button-text, #142017);
+  background: var(--theme-button, #a6c893);
+  border: 1px solid var(--theme-button, #a6c893);
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease;
 }
-.upload-field input {
-  font-size: 12px;
-  max-width: 100%;
+.upload-field label:hover {
+  background: var(--theme-button-hover, #b8d9a3);
+  border-color: var(--theme-button-hover, #b8d9a3);
+}
+.upload-field input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  border: 0;
+}
+.upload-field:has(input[type="file"]:focus-visible) label {
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
 }
 .upload-field p,
 .upload-field small {

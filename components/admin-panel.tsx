@@ -103,7 +103,6 @@ export function AdminPanel() {
     [query, setQuery] = useState(""),
     [status, setStatus] = useState(""),
     [page, setPage] = useState(1);
-  const fileInput = useRef<HTMLInputElement>(null);
   const listRequest = useRef<AbortController | null>(null);
   const editorRequest = useRef(0);
   const update = (key: string, value: unknown) =>
@@ -629,7 +628,6 @@ export function AdminPanel() {
                   </label>
                   <input
                     id="resource-file"
-                    ref={fileInput}
                     type="file"
                     multiple={!draft.version}
                     accept=".pdf,.docx,.pptx,.xlsx,.md,.txt,.csv,.ipynb"
