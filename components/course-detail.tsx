@@ -10,6 +10,7 @@ import {
   PageControls,
 } from "./wiki-controls";
 import { moduleLabel, kinds, seedCourses } from "@/lib/catalog";
+import { Markdown } from "./markdown";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 export function CourseDetail({ id }: { id: string }) {
   const { t, locale, errorText } = useI18n();
@@ -119,23 +120,18 @@ export function CourseDetail({ id }: { id: string }) {
             <TabsContent value="about">
               <div className="prose-card">
                 <h2>{t("О дисциплине")}</h2>
-                <p className="preserve-text">
-                  {c.description ||
+                <Markdown
+                  text={
+                    c.description ||
                     (original
                       ? t(
                           "Описание ещё не добавлено. Исходная запись дисциплины взята из каталога Wiki ФКН; администратор может уточнять её данные.",
                         )
                       : t(
                           "Описание ещё не добавлено. Курс создан администратором проекта.",
-                        ))}
-                </p>
-                {original && (
-                  <p>
-                    {t(
-                      "Оценивание, преподаватели и содержание занятий в исходном файле не указаны.",
-                    )}
-                  </p>
-                )}
+                        ))
+                  }
+                />
               </div>
             </TabsContent>
           </Tabs>

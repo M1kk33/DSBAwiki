@@ -2,6 +2,7 @@ import { requestLocale, translateError } from "./i18n";
 import { env } from "cloudflare:workers";
 import { getChatGPTUser } from "@/app/chatgpt-auth";
 import { seedCourses, type Course, type Resource } from "./catalog";
+import wikiCourseDescriptions from "@/content/course-descriptions.json";
 export class HttpError extends Error {
   constructor(
     public status: number,
@@ -21,36 +22,61 @@ export function bucket() {
 }
 export async function initializeCatalog() {
   const db = database();
-  if (
-    await db
-      .prepare("SELECT value FROM settings WHERE key = ?")
-      .bind("catalog_imported")
-      .first()
-  )
-    return;
-  // An idempotent, transactional import of metadata only. Migrations own the schema.
+  const catalogImported = await db
+    .prepare("SELECT value FROM settings WHERE key = ?")
+    .bind("catalog_imported")
+    .first();
+  if (!catalogImported) {
+    // An idempotent, transactional import of catalogue metadata. Migrations own the schema.
+    await db.batch([
+      ...seedCourses.map((c) =>
+        db
+          .prepare(
+            "INSERT OR IGNORE INTO courses (id,title,study_year,academic_year,modules,category,description,source_url,source_exists,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?)",
+          )
+          .bind(
+            c.id,
+            c.title,
+            c.study_year,
+            c.academic_year,
+            c.modules,
+            c.category,
+            c.description,
+            c.source_url,
+            c.source_exists,
+            c.updated_at,
+          ),
+      ),
+      db
+        .prepare("INSERT OR IGNORE INTO settings (key,value) VALUES (?,?)")
+        .bind("catalog_imported", "reference-97638"),
+    ]);
+  }
+
+  const descriptionsImported = await db
+    .prepare("SELECT value FROM settings WHERE key = ?")
+    .bind("wiki_course_descriptions_imported")
+    .first();
+  if (descriptionsImported) return;
+
+  const importedAt = new Date().toISOString();
   await db.batch([
-    ...seedCourses.map((c) =>
+    ...wikiCourseDescriptions.map((course) =>
       db
         .prepare(
-          "INSERT OR IGNORE INTO courses (id,title,study_year,academic_year,modules,category,description,source_url,source_exists,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?)",
+          "UPDATE courses SET description=?,updated_at=? WHERE id=? AND title=? AND source_url=? AND description=''",
         )
         .bind(
-          c.id,
-          c.title,
-          c.study_year,
-          c.academic_year,
-          c.modules,
-          c.category,
-          c.description,
-          c.source_url,
-          c.source_exists,
-          c.updated_at,
+          course.description,
+          importedAt,
+          course.id,
+          course.title,
+          course.courseSourceUrl,
         ),
     ),
     db
       .prepare("INSERT OR IGNORE INTO settings (key,value) VALUES (?,?)")
-      .bind("catalog_imported", "reference-97638"),
+      .bind("wiki_course_descriptions_imported", "source-revision-2026-09"),
   ]);
 }
 export async function getCourses() {
