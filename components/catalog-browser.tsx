@@ -18,10 +18,12 @@ export type CatalogData = {
   resourceTotal: number;
   page: number;
   pages: number;
+  kindCounts?: Record<string, number>;
 };
 export function useCatalog(search = "") {
   const [data, setData] = useState<CatalogData | null>(null),
     [error, setError] = useState("");
+  const [resolvedSearch, setResolvedSearch] = useState<string | null>(null);
   useEffect(() => {
     const controller = new AbortController();
     fetch("/api/catalog?" + search, { signal: controller.signal })
@@ -32,6 +34,7 @@ export function useCatalog(search = "") {
         };
         if (!r.ok) throw new Error(d.errorKey || d.error);
         setData(d);
+        setResolvedSearch(search);
         setError("");
       })
       .catch((e) => {
@@ -39,7 +42,7 @@ export function useCatalog(search = "") {
       });
     return () => controller.abort();
   }, [search]);
-  return { data, error };
+  return { data, error, loading: resolvedSearch !== search };
 }
 const normalize = (s: string) => s.normalize("NFKC").toLocaleLowerCase();
 export function CourseCard({ course: c }: { course: Course }) {

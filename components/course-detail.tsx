@@ -18,8 +18,9 @@ export function CourseDetail({ id }: { id: string }) {
   const { t, locale, errorText } = useI18n();
   const [page, setPage] = useState(1);
   const [activeTab, setActiveTab] = useState("all");
-  const { data, error } = useCatalog(
-    `course=${id}&page=${page}${activeTab === "exam" ? "&assessment=1" : ""}`,
+  const [kind, setKind] = useState("");
+  const { data, error, loading } = useCatalog(
+    `course=${encodeURIComponent(id)}&facets=1&page=${page}${activeTab === "exam" ? "&assessment=1" : ""}${kind && activeTab === "all" ? `&kind=${encodeURIComponent(kind)}` : ""}`,
   );
   if (error)
     return (
@@ -95,7 +96,21 @@ export function CourseDetail({ id }: { id: string }) {
             </TabsList>
             {["all", "exam"].map((tab) => (
               <TabsContent value={tab} key={tab}>
-                {(tab === "exam"
+                {tab === "all" && (
+                  <div className="material-filters" role="group" aria-label={t("Категории материалов")}>
+                    {[["", t("Все")], ...Object.entries(kinds)].filter(([key]) =>
+                      !key || (data.kindCounts?.[key] || 0) > 0 || key === kind
+                    ).map(([key, label]) => (
+                      <button type="button" key={key} className="material-filter"
+                        aria-pressed={kind === key}
+                        onClick={() => { setKind(key); setPage(1); }}>
+                        {t(label)}
+                        <span>{key ? (data.kindCounts?.[key] || 0) : Object.values(data.kindCounts || {}).reduce((sum, count) => sum + count, 0)}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {loading ? <LoadingState /> : (tab === "exam"
                   ? resources.filter(
                       (r) => r.kind === "exam" || r.kind === "solution",
                     )
@@ -111,7 +126,7 @@ export function CourseDetail({ id }: { id: string }) {
                       return items.length ? (
                         <section className="material-group" key={key}>
                           <h2>
-                            {t(label)} <span>{items.length}</span>
+                            {t(label)} <span>{data.kindCounts?.[key] ?? items.length}</span>
                           </h2>
                           {items.map((r) => (
                             <ResourceRow key={r.id} resource={r} />
@@ -153,7 +168,7 @@ export function CourseDetail({ id }: { id: string }) {
               </div>
             </TabsContent>
           </Tabs>
-          {activeTab !== "about" && (
+          {activeTab !== "about" && !loading && (
             <PageControls
               page={data.page}
               pages={data.pages}

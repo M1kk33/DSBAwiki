@@ -580,6 +580,18 @@ test("DSBA Wiki integration against the persistent local D1/R2 server", async (t
         assert.equal(a.resources.length, 1);
         assert(a.resourceTotal >= 3);
         assert.notEqual(a.resources[0].id, b.resources[0].id);
+        const faceted = await (
+          await request("/api/catalog?course=" + courseId + "&facets=1&limit=1")
+        ).json();
+        assert.equal(
+          Object.values(faceted.kindCounts).reduce((sum, count) => sum + count, 0),
+          faceted.resourceTotal,
+        );
+        const exams = await (
+          await request("/api/catalog?course=" + courseId + "&facets=1&kind=exam&limit=1")
+        ).json();
+        assert(exams.resources.every((resource) => resource.kind === "exam"));
+        assert.equal(exams.kindCounts.exam, faceted.kindCounts.exam);
       },
     );
     await t.test(

@@ -105,7 +105,6 @@ export async function getResources(
     clauses.push("r.kind IN ('exam','solution')");
   for (const [param, column] of [
     ["course", "r.course_id"],
-    ["kind", "r.kind"],
     ["year", "c.study_year"],
     ["academic", "c.academic_year"],
     ["category", "c.category"],
@@ -136,8 +135,19 @@ export async function getResources(
     add(`(instr(${period},?)>0 OR instr(${period},?)>0)`, mods[0]);
     values.push(mods[1]);
   }
-  const where = clauses.length ? " WHERE " + clauses.join(" AND ") : "";
   const from = " FROM resources r JOIN courses c ON c.id=r.course_id";
+  // Facets share visibility/search filters, but ignore the selected kind and page.
+  let kindCounts: Record<string, number> | undefined;
+  if (params.get("facets") === "1") {
+    const facetWhere = clauses.length ? " WHERE " + clauses.join(" AND ") : "";
+    const counts = await database()
+      .prepare("SELECT r.kind, COUNT(*) AS total" + from + facetWhere + " GROUP BY r.kind")
+      .bind(...values)
+      .all<{ kind: string; total: number }>();
+    kindCounts = Object.fromEntries(counts.results.map((row) => [row.kind, row.total]));
+  }
+  if (params.get("kind")) add("r.kind=?", params.get("kind")!);
+  const where = clauses.length ? " WHERE " + clauses.join(" AND ") : "";
   const total =
     (
       await database()
@@ -169,7 +179,7 @@ export async function getResources(
       .bind(...values, limit, (page - 1) * limit)
       .all<Resource>()
   ).results;
-  return { resources, resourceTotal: total, page, pages };
+  return { resources, resourceTotal: total, page, pages, kindCounts };
 }
 export async function getAdmin() {
   const user = await getChatGPTUser();
