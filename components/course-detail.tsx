@@ -12,6 +12,7 @@ import {
 import { moduleLabel, kinds, seedCourses } from "@/lib/catalog";
 import { Markdown } from "./markdown";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import courseDescriptions from "@/content/course-descriptions.json";
 export function CourseDetail({ id }: { id: string }) {
   const { t, locale, errorText } = useI18n();
   const [page, setPage] = useState(1);
@@ -38,6 +39,12 @@ export function CourseDetail({ id }: { id: string }) {
     );
   const resources = data.resources.filter((r) => r.course_id === id);
   const original = seedCourses.find((item) => item.id === c.id);
+  const importedDescription = courseDescriptions.find((item) => item.id === c.id);
+  const descriptionIsPlaceholder =
+    (c.id === "ref-001" || c.id === "ref-026") &&
+    c.description.includes("Full information on the course can be found") ||
+    c.id === "ref-015" &&
+    c.description.includes("This page contains basic information for the course Calculus-2");
   return (
     <>
       <Breadcrumbs
@@ -122,7 +129,9 @@ export function CourseDetail({ id }: { id: string }) {
                 <h2>{t("О дисциплине")}</h2>
                 <Markdown
                   text={
-                    c.description ||
+                    descriptionIsPlaceholder && importedDescription
+                      ? importedDescription.description
+                      : c.description ||
                     (original
                       ? t(
                           "Описание ещё не добавлено. Исходная запись дисциплины взята из каталога Wiki ФКН; администратор может уточнять её данные.",
