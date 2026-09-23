@@ -204,6 +204,27 @@ textarea::placeholder {
 .wiki-sidebar [data-slot="sidebar-inner"] {
   padding: 25px 14px 8px;
 }
+.wiki-sidebar [data-slot="sidebar-content"] {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--sidebar-foreground) 34%, transparent) transparent;
+}
+.wiki-sidebar [data-slot="sidebar-content"]::-webkit-scrollbar {
+  width: 8px;
+}
+.wiki-sidebar [data-slot="sidebar-content"]::-webkit-scrollbar-track {
+  background: transparent;
+}
+.wiki-sidebar [data-slot="sidebar-content"]::-webkit-scrollbar-thumb {
+  min-height: 42px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--sidebar-foreground) 34%, transparent);
+  background-clip: content-box;
+}
+.wiki-sidebar [data-slot="sidebar-content"]::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--sidebar-primary) 62%, transparent);
+  background-clip: content-box;
+}
 .brand {
   display: flex;
   gap: 11px;
