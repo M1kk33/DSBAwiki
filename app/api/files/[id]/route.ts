@@ -31,8 +31,13 @@ export async function GET(
         }"; filename*=UTF-8''${encodeURIComponent(r.filename).replace(/'/g, "%27")}`,
         "Cache-Control": "private, no-store",
         "X-Content-Type-Options": "nosniff",
+        // Chrome's built-in PDF viewer cannot run inside a sandboxed frame.
+        // Keep the same-origin framing restriction, and retain the stricter
+        // sandbox policy for every non-PDF upload.
         "Content-Security-Policy":
-          "sandbox; default-src 'none'; frame-ancestors 'self'",
+          r.mime === "application/pdf"
+            ? "default-src 'none'; frame-ancestors 'self'"
+            : "sandbox; default-src 'none'; frame-ancestors 'self'",
         "X-Frame-Options": "SAMEORIGIN",
       },
     });

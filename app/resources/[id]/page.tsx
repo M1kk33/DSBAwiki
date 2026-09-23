@@ -100,7 +100,6 @@ export default async function Page({
               className="pdf-preview"
               title={t`Предпросмотр PDF: ${r.title}`}
               src={`/api/files/${r.id}`}
-              sandbox="allow-same-origin allow-scripts"
             />
           ) : r.body &&
             ["text/plain", "text/markdown", "text/csv"].includes(r.mime) ? (
