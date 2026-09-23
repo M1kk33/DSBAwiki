@@ -1,5 +1,5 @@
 // A deliberately small, safe Markdown subset. Raw HTML is always rendered as text.
-import { Fragment } from "react";
+import { Fragment, memo } from "react";
 function inline(text: string) {
   return text
     .split(/(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+\]\(https?:\/\/[^\s)]+\))/g)
@@ -17,7 +17,7 @@ function inline(text: string) {
       );
     });
 }
-export function Markdown({ text }: { text: string }) {
+export const Markdown = memo(function Markdown({ text }: { text: string }) {
   const blocks = text.replace(/\r\n/g, "\n").split(/(```[^\n]*\n[\s\S]*?```)/g);
   const renderLines = (lines: string[], keyPrefix: string) => {
     const rendered = [];
@@ -65,4 +65,4 @@ export function Markdown({ text }: { text: string }) {
       )}
     </div>
   );
-}
+});

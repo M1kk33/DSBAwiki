@@ -20,11 +20,15 @@ export type CatalogData = {
   pages: number;
   kindCounts?: Record<string, number>;
 };
-export function useCatalog(search = "") {
-  const [data, setData] = useState<CatalogData | null>(null),
-    [error, setError] = useState("");
+export function useCatalog(search = "", options: { enabled?: boolean; cache?: boolean } = {}) {
+  const { enabled = true, cache = false } = options;
+  const [data, setData] = useState<CatalogData | null>(null);
+  const [errorState, setErrorState] = useState({ search: "", message: "" });
   const [resolvedSearch, setResolvedSearch] = useState<string | null>(null);
+  const [responses] = useState(() => new Map<string, CatalogData>());
+  const cached = cache ? responses.get(search) : undefined;
   useEffect(() => {
+    if (!enabled || (cache && responses.has(search))) return;
     const controller = new AbortController();
     fetch("/api/catalog?" + search, { signal: controller.signal })
       .then(async (r) => {
@@ -33,16 +37,21 @@ export function useCatalog(search = "") {
           error?: string;
         };
         if (!r.ok) throw new Error(d.errorKey || d.error);
+        if (cache) responses.set(search, d);
         setData(d);
         setResolvedSearch(search);
-        setError("");
+        setErrorState({ search, message: "" });
       })
       .catch((e) => {
-        if (e.name !== "AbortError") setError(errorMessage(e));
+        if (e.name !== "AbortError") setErrorState({ search, message: errorMessage(e) });
       });
     return () => controller.abort();
-  }, [search]);
-  return { data, error, loading: resolvedSearch !== search };
+  }, [search, enabled, cache, responses]);
+  return {
+    data: cached ?? data,
+    error: errorState.search === search ? errorState.message : "",
+    loading: enabled && !cached && resolvedSearch !== search,
+  };
 }
 const normalize = (s: string) => s.normalize("NFKC").toLocaleLowerCase();
 export function CourseCard({ course: c }: { course: Course }) {

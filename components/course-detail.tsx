@@ -19,9 +19,15 @@ export function CourseDetail({ id }: { id: string }) {
   const [page, setPage] = useState(1);
   const [activeTab, setActiveTab] = useState("all");
   const [kind, setKind] = useState("");
-  const { data, error, loading } = useCatalog(
-    `course=${encodeURIComponent(id)}&facets=1&page=${page}${activeTab === "exam" ? "&assessment=1" : ""}${kind && activeTab === "all" ? `&kind=${encodeURIComponent(kind)}` : ""}`,
-  );
+  const baseQuery = `course=${encodeURIComponent(id)}&facets=1&limit=100&page=1`;
+  const base = useCatalog(baseQuery);
+  const needsFiltered = !!base.data && base.data.resourceTotal > 100 &&
+    activeTab !== "about" && (activeTab === "exam" || !!kind || page > 1);
+  const filteredQuery = `course=${encodeURIComponent(id)}&facets=1&limit=100&page=${page}${activeTab === "exam" ? "&assessment=1" : ""}${kind && activeTab === "all" ? `&kind=${encodeURIComponent(kind)}` : ""}`;
+  const filtered = useCatalog(filteredQuery, { enabled: needsFiltered, cache: true });
+  const data = needsFiltered && !filtered.loading && filtered.data ? filtered.data : base.data;
+  const error = needsFiltered ? filtered.error : base.error;
+  const loading = needsFiltered ? filtered.loading : base.loading;
   if (error)
     return (
       <div className="error-banner" role="alert">
@@ -39,7 +45,9 @@ export function CourseDetail({ id }: { id: string }) {
         )}
       />
     );
-  const resources = data.resources.filter((r) => r.course_id === id);
+  const resources = data.resources.filter((r) =>
+    r.course_id === id && (needsFiltered || activeTab !== "all" || !kind || r.kind === kind)
+  );
   const original = seedCourses.find((item) => item.id === c.id);
   const importedDescription = courseDescriptions.find((item) => item.id === c.id);
   const wikiPage = courseWikiSections.find((item) => item.id === c.id);
@@ -144,7 +152,7 @@ export function CourseDetail({ id }: { id: string }) {
                 )}
               </TabsContent>
             ))}
-            <TabsContent value="about">
+            <TabsContent value="about" forceMount hidden={activeTab !== "about"}>
               <div className="prose-card">
                 <h2>{t("О дисциплине")}</h2>
                 {courseDescription ? <Markdown text={courseDescription} /> : !wikiPage && (
