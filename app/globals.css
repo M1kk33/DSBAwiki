@@ -1499,6 +1499,20 @@ textarea::placeholder {
   flex-direction: column;
   align-items: center;
   color: var(--theme-accent, #729257);
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+.upload-field.is-dragging {
+  background: color-mix(
+    in srgb,
+    var(--theme-soft, #f0f5e9) 82%,
+    var(--theme-accent, #729257) 18%
+  );
+  border-color: var(--theme-accent, #729257);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--theme-accent, #729257) 18%, transparent);
 }
 .upload-field label {
   font-size: 15px;

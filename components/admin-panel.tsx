@@ -96,6 +96,7 @@ export function AdminPanel() {
     [activation, setActivation] = useState(""),
     [draft, setDraft] = useState<ResourceDraft>(blankResource),
     [files, setFiles] = useState<File[]>([]),
+    [isDraggingFiles, setIsDraggingFiles] = useState(false),
     [editorOpen, setEditorOpen] = useState(false),
     [courseOpen, setCourseOpen] = useState(false),
     [courseDraft, setCourseDraft] = useState(blankCourse),
@@ -107,6 +108,31 @@ export function AdminPanel() {
   const editorRequest = useRef(0);
   const update = (key: string, value: unknown) =>
     setDraft((d) => ({ ...d, [key]: value }));
+  function selectFiles(incoming: File[]) {
+    const allowed = new Set([
+      "pdf",
+      "docx",
+      "pptx",
+      "xlsx",
+      "md",
+      "txt",
+      "csv",
+      "ipynb",
+    ]);
+    const accepted = incoming.filter((file) => {
+      const extension = file.name.split(".").pop()?.toLowerCase();
+      return extension && allowed.has(extension);
+    });
+    if (accepted.length < incoming.length)
+      toast.error(t("Поддерживаются PDF, DOCX, PPTX, XLSX, TXT, MD, CSV и IPYNB."));
+    if (draft.version && accepted.length > 1)
+      toast.info(t("Для замены можно выбрать только один файл."));
+    const chosen = draft.version ? accepted.slice(0, 1) : accepted;
+    if (chosen.length === 0) return;
+    setFiles(chosen);
+    if (!draft.title && chosen[0])
+      update("title", chosen[0].name.replace(/\.[^.]+$/, ""));
+  }
   async function load() {
     listRequest.current?.abort();
     const controller = new AbortController();
@@ -569,7 +595,32 @@ export function AdminPanel() {
                 />
               </label>
               {draft.format === "file" && (
-                <div className="upload-field full">
+                <div
+                  className={`upload-field full${isDraggingFiles ? " is-dragging" : ""}`}
+                  aria-label={t("Область загрузки файла")}
+                  onDragEnter={(event) => {
+                    if (event.dataTransfer.types.includes("Files")) {
+                      event.preventDefault();
+                      setIsDraggingFiles(true);
+                    }
+                  }}
+                  onDragOver={(event) => {
+                    if (event.dataTransfer.types.includes("Files")) {
+                      event.preventDefault();
+                      event.dataTransfer.dropEffect = "copy";
+                    }
+                  }}
+                  onDragLeave={(event) => {
+                    const next = event.relatedTarget;
+                    if (!next || !event.currentTarget.contains(next as Node))
+                      setIsDraggingFiles(false);
+                  }}
+                  onDrop={(event) => {
+                    event.preventDefault();
+                    setIsDraggingFiles(false);
+                    selectFiles(Array.from(event.dataTransfer.files));
+                  }}
+                >
                   <Upload size={25} />
                   <label htmlFor="resource-file">
                     {draft.filename
@@ -583,12 +634,11 @@ export function AdminPanel() {
                     multiple={!draft.version}
                     accept=".pdf,.docx,.pptx,.xlsx,.md,.txt,.csv,.ipynb"
                     onChange={(e) => {
-                      const chosen = Array.from(e.target.files || []);
-                      setFiles(chosen);
-                      if (!draft.title && chosen[0])
-                        update("title", chosen[0].name.replace(/\.[^.]+$/, ""));
+                      selectFiles(Array.from(e.target.files || []));
+                      e.currentTarget.value = "";
                     }}
                   />
+                  <p>{t("Перетащите файлы сюда или выберите их через окно.")}</p>
                   <p>
                     {t(
                       "PDF, Office, Markdown, TXT, CSV, IPYNB · до 16 МБ на файл",
