@@ -143,3 +143,41 @@ export async function PUT(request: Request) {
     return apiError(e, request);
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    sameOrigin(request);
+    await requireAdmin();
+    const params = new URL(request.url).searchParams;
+    const id = params.get("id") || "";
+    const version = Number(params.get("version"));
+    if (!id || id.length > 100 || !Number.isInteger(version) || version < 1)
+      throw new HttpError(400, "Некорректный идентификатор.");
+
+    const db = database();
+    const old = await db
+      .prepare("SELECT file_key, version FROM resources WHERE id=?")
+      .bind(id)
+      .first<{ file_key: string; version: number }>();
+    if (!old) throw new HttpError(404, "Материал не найден.");
+
+    const result = await db
+      .prepare("DELETE FROM resources WHERE id=? AND version=?")
+      .bind(id, version)
+      .run();
+    if (!result.meta.changes)
+      throw new HttpError(409, "Материал уже изменён другим запросом.");
+
+    if (old.file_key) {
+      try {
+        await bucket().delete(old.file_key);
+      } catch (e) {
+        // The resource is gone from the catalogue; a failed object cleanup is only an orphan.
+        console.error("orphan_file_cleanup", old.file_key, e);
+      }
+    }
+    return Response.json({ id, deleted: true }, { headers: noStore });
+  } catch (e) {
+    return apiError(e, request);
+  }
+}

@@ -1409,6 +1409,42 @@ textarea::placeholder {
   display: block;
   margin-top: 5px;
 }
+.admin-resource-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+.admin-resource-edit,
+.admin-resource-delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  cursor: pointer;
+}
+.admin-resource-edit {
+  padding: 0 9px;
+  color: var(--theme-accent, #56704c);
+  font-size: 12px;
+}
+.admin-resource-delete {
+  width: 34px;
+  color: var(--destructive);
+}
+.admin-resource-edit:hover,
+.admin-resource-delete:hover {
+  background: var(--theme-hover, #f0f4e9);
+  border-color: var(--border);
+}
+.admin-resource-edit:disabled,
+.admin-resource-delete:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
 .status-badge {
   font-size: 11px;
   padding: 4px 8px;
@@ -1708,8 +1744,12 @@ textarea::placeholder {
     padding: 15px 0;
     gap: 10px;
   }
-  .admin-resource > span:last-child:not(.status-badge) {
-    display: none;
+  .admin-resource-actions {
+    gap: 2px;
+  }
+  .admin-resource-edit {
+    padding: 0 5px;
+    font-size: 11px;
   }
   .form-grid {
     grid-template-columns: minmax(0, 1fr);

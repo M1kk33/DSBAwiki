@@ -11,6 +11,7 @@ import {
   LogOut,
   FileText,
   Search,
+  Trash2,
 } from "lucide-react";
 import { toast } from "sonner";
 import { type Course, type Resource, kinds } from "@/lib/catalog";
@@ -274,6 +275,36 @@ export function AdminPanel() {
       setBusy(false);
     }
   }
+  async function deleteResource(resource: Resource) {
+    if (
+      !window.confirm(
+        t`Удалить материал «${resource.title}»? Это действие нельзя отменить.`,
+      )
+    )
+      return;
+    setBusy(true);
+    setError("");
+    try {
+      const params = new URLSearchParams({
+        id: resource.id,
+        version: String(resource.version),
+      });
+      const response = await fetch(`/api/admin/resources?${params}`, {
+        method: "DELETE",
+      });
+      const result = (await readResponse(response)) as {
+        errorKey?: string;
+        error?: string;
+      };
+      if (!response.ok) throw new Error(result.errorKey || result.error);
+      await load();
+      toast.success(t`Материал «${resource.title}» удалён.`);
+    } catch (e) {
+      setError(errorMessage(e));
+    } finally {
+      setBusy(false);
+    }
+  }
   async function saveCourse(e: React.FormEvent) {
     e.preventDefault();
     setBusy(true);
@@ -449,11 +480,7 @@ export function AdminPanel() {
               {data.resources?.length ? (
                 <div className="admin-resource-list">
                   {data.resources.map((r) => (
-                    <button
-                      className="admin-resource"
-                      onClick={() => editResource(r)}
-                      key={r.id}
-                    >
+                    <div className="admin-resource" key={r.id}>
                       <FileText size={23} />
                       <span>
                         <strong>{r.title}</strong>
@@ -464,8 +491,27 @@ export function AdminPanel() {
                       <span className={`status-badge status-${r.status}`}>
                         {t(statuses[r.status])}
                       </span>
-                      <span>{t("Изменить")}</span>
-                    </button>
+                      <span className="admin-resource-actions">
+                        <button
+                          type="button"
+                          className="admin-resource-edit"
+                          disabled={busy}
+                          onClick={() => editResource(r)}
+                        >
+                          {t("Изменить")}
+                        </button>
+                        <button
+                          type="button"
+                          className="admin-resource-delete"
+                          aria-label={t`Удалить материал «${r.title}»`}
+                          title={t("Удалить")}
+                          disabled={busy}
+                          onClick={() => deleteResource(r)}
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </span>
+                    </div>
                   ))}
                 </div>
               ) : (
