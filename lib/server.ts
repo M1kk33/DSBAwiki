@@ -78,7 +78,10 @@ export async function initializeCatalog() {
         ),
     ),
     db
-      .prepare("INSERT INTO settings (key,value) VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value")
+      .prepare("UPDATE settings SET value=? WHERE key=?")
+      .bind("course-summaries-v2", "wiki_course_descriptions_imported"),
+    db
+      .prepare("INSERT OR IGNORE INTO settings (key,value) VALUES (?,?)")
       .bind("wiki_course_descriptions_imported", "course-summaries-v2"),
   ]);
 }
