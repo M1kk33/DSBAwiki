@@ -1136,8 +1136,12 @@ textarea::placeholder {
 }
 .detail-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 270px;
+  grid-template-columns: minmax(0, 1fr);
   gap: 30px;
+}
+.detail-layout > aside {
+  justify-self: end;
+  width: min(100%, 300px);
 }
 .content-tabs {
   background: var(--theme-soft, #eaf0e2);
@@ -1641,11 +1645,6 @@ textarea::placeholder {
   }
   .detail-layout {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .detail-layout > aside {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
   }
   .about-intro h1 {
     font-size: 30px;

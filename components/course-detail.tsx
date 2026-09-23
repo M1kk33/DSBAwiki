@@ -1,7 +1,7 @@
 "use client";
 import { useI18n } from "@/components/wiki-locale";
 import { useState } from "react";
-import { ArrowUpRight, BookOpen, Info } from "lucide-react";
+import { ArrowUpRight, BookOpen } from "lucide-react";
 import { useCatalog, ResourceRow } from "./catalog-browser";
 import {
   Breadcrumbs,
@@ -37,8 +37,6 @@ export function CourseDetail({ id }: { id: string }) {
     );
   const resources = data.resources.filter((r) => r.course_id === id);
   const original = seedCourses.find((item) => item.id === c.id);
-  const originalSource =
-    original?.source_url && original.source_url === c.source_url;
   return (
     <>
       <Breadcrumbs
@@ -112,7 +110,7 @@ export function CourseDetail({ id }: { id: string }) {
                   <EmptyState
                     title={t("Здесь появятся материалы курса")}
                     description={t(
-                      "Лекции, задачи и конспекты ещё не загружены. Пока можно обратиться к странице курса в исходной wiki, если она указана.",
+                      "Лекции, задачи и конспекты ещё не добавлены. Новые материалы появятся здесь.",
                     )}
                   />
                 )}
@@ -150,42 +148,6 @@ export function CourseDetail({ id }: { id: string }) {
           )}
         </section>
         <aside>
-          <div className="info-card">
-            <Info size={22} />
-            <h2>{t("Источник курса")}</h2>
-            {c.source_url ? (
-              <>
-                <p>
-                  {originalSource
-                    ? t(
-                        "Страница была отмечена как существующая в предоставленном снимке Wiki ФКН. Её актуальность может измениться.",
-                      )
-                    : t(
-                        "Источник указан администратором. Содержание и актуальность проверяйте на странице источника.",
-                      )}
-                </p>
-                <a
-                  className="button"
-                  href={c.source_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {originalSource
-                    ? t("Открыть Wiki ФКН")
-                    : t("Открыть источник")}{" "}
-                  <ArrowUpRight size={16} />
-                </a>
-              </>
-            ) : (
-              <p>
-                {original && !original.source_exists
-                  ? t(
-                      "В исходном снимке страница этой дисциплины ещё не была создана. Здесь можно собрать новые материалы.",
-                    )
-                  : t("Ссылка на источник пока не добавлена.")}
-              </p>
-            )}
-          </div>
           <div className="info-card plain">
             <h2>{t("Есть хороший конспект?")}</h2>
             <p>{t("Помоги следующим студентам разобраться в теме.")}</p>
